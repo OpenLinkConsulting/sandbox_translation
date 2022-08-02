@@ -27,6 +27,7 @@ Data directory : test
 
 Japanese translation setting
 
+```
 ja -------------------------------------------
    target_lang = 'ja'
    project_id = "open-lc-g-signin"
@@ -35,9 +36,11 @@ ja -------------------------------------------
    model_id = "TRL5657739390860918784"
    glossary_id =  "edb_glossary_v7"
 ja -----------------------------------------------
+```
 
 Traditional Chinese
 
+```
 zh-TW -------------------------------------------
    target_lang = 'zh-TW'
    project_id = "open-lc-g-signin"
@@ -46,9 +49,11 @@ zh-TW -------------------------------------------
    model_id = ""
    glossary_id =  "edb_glossary_tw_v4"
 zh-TW ----------------------------------------------
+```
 
 Koeran Language Setting
 
+```
 ko -------------------------------------------
    target_lang = 'ko'
    project_id = "open-lc-g-signin"
@@ -57,6 +62,7 @@ ko -------------------------------------------
    model_id = ""
    glossary_id =  "edb_glossary_ko_v1"
 ko ----------------------------------------------
+```
 
 ### Program desctription of each
 
