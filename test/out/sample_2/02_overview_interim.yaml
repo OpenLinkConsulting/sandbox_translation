@@ -1,0 +1,501 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# HARP functionality overview`"
+  :original_contents: "`# HARP functionality overview` "
+- :key: '2'
+  :contents: HARP is a new approach to high availability for BDR clusters. It leverages
+    a consensus-driven quorum to determine the correct connection endpoint in a semi-exclusive
+    manner to prevent unintended multi-node writes from an application.
+  :translated_contents: HARPは、 BDRクラスターの高可用性に対する新しいアプローチです。コンセンサス駆動のクォーラムを活用して、半排他的な方法で正しい接続エンドポイントを決定し、アプリケーションからの意図しないマルチノード書き込みを防ぎます。
+  :original_contents: 'HARP is a new approach to high availability for BDR clusters.
+    It leverages a consensus-driven quorum to determine the correct connection endpoint
+    in a semi-exclusive manner to prevent unintended multi-node writes from an application. '
+- :key: '3'
+  :contents: "## The importance of quorum"
+  :translated_contents: "## クォーラムの重要性"
+  :original_contents: "## The importance of quorum "
+- :key: '4'
+  :contents: 'The central purpose of HARP is to enforce full quorum on any Postgres
+    cluster it manages. Quorum is a term applied to a voting body that mandates a
+    certain minimum of attendees are available to make a decision. More simply: majority
+    rules.'
+  :translated_contents: HARPの主な目的は、管理するPostgresクラスターにフルクォーラムを適用することです。クォーラムとは、決定を行うために特定の最小限の出席者を義務付ける投票機関に適用される用語です。より簡単に：多数決ルール。
+  :original_contents: 'The central purpose of HARP is to enforce full quorum on any
+    Postgres cluster it manages. Quorum is a term applied to a voting body that mandates
+    a certain minimum of attendees are available to make a decision. More simply:
+    majority rules. '
+- :key: '5'
+  :contents: For any vote to end in a result other than a tie, an odd number of nodes
+    must constitute the full cluster membership. Quorum, however, doesn't strictly
+    demand this restriction; a simple majority is enough. This means that in a cluster
+    of N nodes, quorum requires a minimum of N/2+1 nodes to hold a meaningful vote.
+  :translated_contents: 同点以外の結果に終わるには、奇数のノードが完全なクラスターメンバーシップを構成する必要があります。ただし、クォーラムはこの制限を厳密に要求しません。単純過半数で十分です。これは、N個のノードのクラスターでは、クォーラムが意味のある投票を保持するために少なくともN/2+1ノードが必要であることを意味します。
+  :original_contents: 'For any vote to end in a result other than a tie, an odd number
+    of nodes must constitute the full cluster membership. Quorum, however, doesn''t
+    strictly demand this restriction; a simple majority is enough. This means that
+    in a cluster of N nodes, quorum requires a minimum of N/2+1 nodes to hold a meaningful
+    vote. '
+- :key: '6'
+  :contents: All of this ensures the cluster is always in agreement regarding the
+    node that is "in charge." For a BDR cluster consisting of multiple nodes, this
+    determines the node that is the primary write target. HARP designates this node
+    as the lead master.
+  :translated_contents: これらすべてにより、クラスターが「担当」するノードに関して常に合意することが保証されます。マルチプルノードで構成されるBDRクラスターの場合、プライマリ書き込み対象のノードを決定します。
+    HARPはこのノードをリードマスターとして指定します。
+  :original_contents: 'All of this ensures the cluster is always in agreement regarding
+    the node that is "in charge." For a BDR cluster consisting of multiple nodes,
+    this determines the node that is the primary write target. HARP designates this
+    node as the lead master. '
+- :key: '7'
+  :contents: "## Reducing write targets"
+  :translated_contents: "## 書き込みターゲットの削減"
+  :original_contents: "## Reducing write targets "
+- :key: '8'
+  :contents: The consequence of ignoring the concept of quorum, or not applying it
+    well enough, can lead to a "split brain" scenario where the "correct" write target
+    is ambiguous or unknowable. In a standard Postgres cluster, it's important that
+    only a single node is ever writable and sending replication traffic to the remaining
+    nodes.
+  :translated_contents: クォーラムの概念を無視するか、それを十分に適用しないと、「正しい」書き込みターゲットがあいまいまたは不明な「スプリットブレイン」シナリオにつながる可能性があります。標準のPostgresクラスターでは、1つのノードのみが書き込み可能で、残りのノードにレプリケーショントラフィックを送信することが重要です。
+  :original_contents: 'The consequence of ignoring the concept of quorum, or not applying
+    it well enough, can lead to a "split brain" scenario where the "correct" write
+    target is ambiguous or unknowable. In a standard Postgres cluster, it''s important
+    that only a single node is ever writable and sending replication traffic to the
+    remaining nodes. '
+- :key: '9'
+  :contents: Even in multi-master-capable approaches such as BDR, it can be help to
+    reduce the amount of necessary conflict management to derive identical data across
+    the cluster. In clusters that consist of multiple BDR nodes per physical location
+    or region, this usually means a single BDR node acts as a "leader" and remaining
+    nodes are "shadow." These shadow nodes are still writable, but writing to them
+    is discouraged unless absolutely necessary.
+  :translated_contents: BDRなどのマルチマスター対応のアプローチでも、クラスター全体で同一のデータを取得するために必要な競合管理の量を削減するのに役立ちます。物理的な場所またはリージョンごとに複数のBDRノードで構成されるクラスターでは、これは通常、単一のBDRノードが「リーダー」として機能し、残りのノードが「シャドウ」であることを意味します。これらのシャドウノードは引き続き書き込み可能ですが、どうしても必要な場合を除き、書き込みはお勧めしません。
+  :original_contents: 'Even in multi-master-capable approaches such as BDR, it can
+    be help to reduce the amount of necessary conflict management to derive identical
+    data across the cluster. In clusters that consist of multiple BDR nodes per physical
+    location or region, this usually means a single BDR node acts as a "leader" and
+    remaining nodes are "shadow." These shadow nodes are still writable, but writing
+    to them is discouraged unless absolutely necessary. '
+- :key: '10'
+  :contents: By leveraging quorum, it's possible for all nodes to agree on the exact
+    Postgres node to represent the entire cluster or a local BDR region. Any nodes
+    that lose contact with the remainder of the quorum, or are overruled by it, by
+    definition can't become the cluster leader.
+  :translated_contents: クォーラムを活用することで、すべてのノードがクラスター全体またはローカルBDRリージョンを表す正確なPostgresノードに同意することができます。定義により、クォーラムの残りの部分との接続を失ったノード、またはクォーラムによって無効にされたノードはクラスターリーダーになることはできません。
+  :original_contents: 'By leveraging quorum, it''s possible for all nodes to agree
+    on the exact Postgres node to represent the entire cluster or a local BDR region.
+    Any nodes that lose contact with the remainder of the quorum, or are overruled
+    by it, by definition can''t become the cluster leader. '
+- :key: '11'
+  :contents: This restriction prevents split-brain situations where writes unintentionally
+    reach two Postgres nodes. Unlike technologies such as VPNs, proxies, load balancers,
+    or DNS, you can't circumvent a quorum-derived consensus by misconfiguration or
+    network partitions. So long as it's possible to contact the consensus layer to
+    determine the state of the quorum maintained by HARP, only one target is ever
+    valid.
+  :translated_contents: この制限により、書き込みが意図せずに2つのPostgresノードに到達するスプリットブレイン状況が防止されます。 VPN、プロキシ、ロードバランサー、DNSなどのテクノロジーとは異なり、構成ミスやネットワークパーティションによってクォーラムから派生したコンセンサスを回避することはできません。コンセンサスレイヤーに接続して、
+    HARPによって維持されるクォーラムの状態を判断できる限り、有効なターゲットは1つだけです。
+  :original_contents: 'This restriction prevents split-brain situations where writes
+    unintentionally reach two Postgres nodes. Unlike technologies such as VPNs, proxies,
+    load balancers, or DNS, you can''t circumvent a quorum-derived consensus by misconfiguration
+    or network partitions. So long as it''s possible to contact the consensus layer
+    to determine the state of the quorum maintained by HARP, only one target is ever
+    valid. '
+- :key: '12'
+  :contents: "## Basic architecture"
+  :translated_contents: "## 基本的なアーキテクチャ"
+  :original_contents: "## Basic architecture "
+- :key: '13'
+  :contents: 'The design of HARP comes in essentially two parts, consisting of a manager
+    and a proxy. The following diagram describes how these interact with a single
+    Postgres instance:'
+  :translated_contents: HARPのデザインは、基本的にマネージャーとプロキシの2つの部分で構成されています。次の図は、これらが単一のPostgresインスタンスとどのように相互作用するかを説明しています。
+  :original_contents: 'The design of HARP comes in essentially two parts, consisting
+    of a manager and a proxy. The following diagram describes how these interact with
+    a single Postgres instance: '
+- :key: '14'
+  :contents: "!edb_tran_1"
+  :translated_contents: "![HARP Unit](images/ha-unit.png)"
+  :original_contents: "![HARP Unit](images/ha-unit.png) "
+- :key: '15'
+  :contents: The consensus layer is an external entity where Harp Manager maintains
+    information it learns about its assigned Postgres node, and HARP Proxy translates
+    this information to a valid Postgres node target. Because Proxy obtains the node
+    target from the consensus layer, several such instances can exist independently.
+  :translated_contents: コンセンサスレイヤーは、Harp Managerが割り当てられたPostgresノードについて学習した情報を維持する外部エンティティであり、
+    HARPプロキシはこの情報を有効なPostgresノードターゲットに変換します。プロキシはコンセンサスレイヤーからノードターゲットを取得するため、このようなインスタンスが複数存在する場合があります。
+  :original_contents: 'The consensus layer is an external entity where Harp Manager
+    maintains information it learns about its assigned Postgres node, and HARP Proxy
+    translates this information to a valid Postgres node target. Because Proxy obtains
+    the node target from the consensus layer, several such instances can exist independently. '
+- :key: '16'
+  :contents: 'While using BDR as the consensus layer, each server node resembles this
+    variant instead:'
+  :translated_contents: コンセンサスレイヤーとしてBDRを使用している間、各サーバーノードは代わりにこのバリアントに似ています。
+  :original_contents: 'While using BDR as the consensus layer, each server node resembles
+    this variant instead: '
+- :key: '17'
+  :contents: "!edb_tran_1"
+  :translated_contents: "![HARP Unit w/BDR Consensus](images/ha-unit-bdr.png)"
+  :original_contents: "![HARP Unit w/BDR Consensus](images/ha-unit-bdr.png) "
+- :key: '18'
+  :contents: 'In either case, each unit consists of the following elements:'
+  :translated_contents: いずれの場合も、各ユニットは次の要素で構成されます。
+  :original_contents: 'In either case, each unit consists of the following elements: '
+- :key: '19'
+  :contents: "*  A Postgres or EDB instance "
+  :translated_contents: "* PostgresまたはEDBインスタンス"
+  :original_contents: "* A Postgres or EDB instance "
+- :key: '20'
+  :contents: "*  A consensus layer resource, meant to track various attributes of
+    the Postgres instance "
+  :translated_contents: "* Postgresインスタンスのさまざまな属性を追跡するためのコンセンサスレイヤーリソース"
+  :original_contents: "* A consensus layer resource, meant to track various attributes
+    of the Postgres instance "
+- :key: '21'
+  :contents: "*  A HARP Manager process to convey the state of the Postgres node to
+    the consensus layer "
+  :translated_contents: "* Postgresノードの状態をコンセンサスレイヤーに伝えるHARP Managerプロセス "
+  :original_contents: "* A HARP Manager process to convey the state of the Postgres
+    node to the consensus layer "
+- :key: '22'
+  :contents: "*  A HARP Proxy service that directs traffic to the proper lead master
+    node, as derived from the consensus layer "
+  :translated_contents: "*コンセンサスレイヤーから派生した、適切なリードマスターノードにトラフィックを転送するHARPプロキシサービス "
+  :original_contents: "* A HARP Proxy service that directs traffic to the proper lead
+    master node, as derived from the consensus layer "
+- :key: '23'
+  :contents: Not every application stack has access to additional node resources specifically
+    for the Proxy component, so it can be combined with the application server to
+    simplify the stack.
+  :translated_contents: すべてのアプリケーションスタックがプロキシコンポーネント専用の追加ノードリソースにアクセスできるわけではないため、アプリケーションサーバーと組み合わせてスタックを簡素化できます。
+  :original_contents: 'Not every application stack has access to additional node resources
+    specifically for the Proxy component, so it can be combined with the application
+    server to simplify the stack. '
+- :key: '24'
+  :contents: 'This is a typical design using two BDR nodes in a single data center
+    organized in a lead master/shadow master configuration:'
+  :translated_contents: これは、リードマスター/シャドウマスター構成で編成された単一のデータセンターで2つのBDRノードを使用する一般的なデザインです。
+  :original_contents: 'This is a typical design using two BDR nodes in a single data
+    center organized in a lead master/shadow master configuration: '
+- :key: '25'
+  :contents: "!edb_tran_1"
+  :translated_contents: "![HARP Cluster](images/ha-ao.png)"
+  :original_contents: "![HARP Cluster](images/ha-ao.png) "
+- :key: '26'
+  :contents: When using BDR  as the HARP consensus layer, at least three fully qualified
+    BDR nodes must be present to ensure a quorum majority. (Not shown in the diagram
+    are connections between BDR nodes.)
+  :translated_contents: BDRをHARPコンセンサスレイヤーとして使用する場合、クォーラムマジョリティを保証には、少なくとも3つの完全修飾BDRノードが存在する必要があります。
+    （図には、 BDRノード間の接続は示されていません。）
+  :original_contents: 'When using BDR  as the HARP consensus layer, at least three
+    fully qualified BDR nodes must be present to ensure a quorum majority. (Not shown
+    in the diagram are connections between BDR nodes.) '
+- :key: '27'
+  :contents: "!edb_tran_1"
+  :translated_contents: "![HARP Cluster w/BDR Consensus](images/ha-ao-bdr.png)"
+  :original_contents: "![HARP Cluster w/BDR Consensus](images/ha-ao-bdr.png) "
+- :key: '28'
+  :contents: "## How it works"
+  :translated_contents: "## 仕組み"
+  :original_contents: "## How it works "
+- :key: '29'
+  :contents: When managing a BDR cluster, HARP maintains at most one leader node per
+    defined location. This is referred to as the lead master. Other BDR nodes that
+    are eligible to take this position are shadow master state until they take the
+    leader role.
+  :translated_contents: BDRクラスターを管理する場合、 HARPは定義された場所ごとに最大1つのリーダーノードを維持します。これはリードマスターと呼ばれます。この位置を取得できる他のBDRノードは、リーダーロールを取得するまでシャドウマスター状態です。
+  :original_contents: 'When managing a BDR cluster, HARP maintains at most one leader
+    node per defined location. This is referred to as the lead master. Other BDR nodes
+    that are eligible to take this position are shadow master state until they take
+    the leader role. '
+- :key: '30'
+  :contents: Applications can contact the current leader only through the proxy service.
+    Since the consensus layer requires quorum agreement before conveying leader state,
+    proxy services direct traffic to that node.
+  :translated_contents: アプリケーションは、プロキシサービスを介してのみ現在のリーダーに連絡できます。コンセンサスレイヤーはリーダーの状態を伝える前にクォーラム契約を必要とするため、プロキシサービスはトラフィックをそのノードに転送します。
+  :original_contents: 'Applications can contact the current leader only through the
+    proxy service. Since the consensus layer requires quorum agreement before conveying
+    leader state, proxy services direct traffic to that node. '
+- :key: '31'
+  :contents: At a high level, this mechanism prevents simultaneous application interaction
+    with multiple nodes.
+  :translated_contents: 高レベルでは、このメカニズムは複数のノードとのアプリケーションの同時対話を防ぎます。
+  :original_contents: 'At a high level, this mechanism prevents simultaneous application
+    interaction with multiple nodes. '
+- :key: '32'
+  :contents: "### Determining a leader"
+  :translated_contents: "### リーダーの決定"
+  :original_contents: "### Determining a leader "
+- :key: '33'
+  :contents: 'As an example, consider the role of lead master in a locally subdivided
+    BDR Always-On group as can exist in a single data center. When any Postgres or
+    Manager resource is started, and after a configurable refresh interval, the following
+    must occur:'
+  :translated_contents: 例として、単一のデータセンターに存在する可能性がある、ローカルに細分化されたBDR Always-Onグループでのリードマスターのロールを検討します。
+    PostgresまたはManagerリソースが起動され、構成可能な更新間隔の後、次が発生する必要があります。
+  :original_contents: 'As an example, consider the role of lead master in a locally
+    subdivided BDR Always-On group as can exist in a single data center. When any
+    Postgres or Manager resource is started, and after a configurable refresh interval,
+    the following must occur: '
+- :key: '34'
+  :contents: 1. The Manager checks the status of its assigned Postgres resource. -
+    If Postgres isn't running, try again after configurable timeout. - If Postgres
+    is running, continue.
+  :translated_contents: 1. Managerは、割り当てられたPostgresリソースのステータスを確認します。 - Postgresが実行されていない場合は、構成可能なタイムアウト後に再試行します。
+    - Postgresが実行されている場合は続行します。
+  :original_contents: '1. The Manager checks the status of its assigned Postgres resource.
+    - If Postgres isn''t running, try again after configurable timeout. - If Postgres
+    is running, continue. '
+- :key: '35'
+  :contents: 2. The Manager checks the status of the leader lease in the consensus
+    layer. - If the lease is unclaimed, acquire it and assign the identity of the
+    Postgres instance assigned to this manager. This lease duration is configurable,
+    but setting it too low can result in unexpected leadership transitions. - If the
+    lease is already claimed by us, renew the lease TTL. - Otherwise do nothing.
+  :translated_contents: 2. Managerは、コンセンサスレイヤーのリーダーリースのステータスを確認します。 -リースが要求されていない場合は、リースを取得し、このマネージャーに割り当てられたPostgresインスタンスのIDを割り当てます。このリース期間は構成可能ですが、設定が低すぎると、予期しないリーダーシップの移行が発生する可能性があります。
+    - リースが既に当社によって要求されている場合は、リースのTTLを更新します。 - それ以外の場合は何もしません。
+  :original_contents: '2. The Manager checks the status of the leader lease in the
+    consensus layer. - If the lease is unclaimed, acquire it and assign the identity
+    of the Postgres instance assigned to this manager. This lease duration is configurable,
+    but setting it too low can result in unexpected leadership transitions. - If the
+    lease is already claimed by us, renew the lease TTL. - Otherwise do nothing. '
+- :key: '36'
+  :contents: A lot more occurs, but this simplified version explains what's happening.
+    The leader lease can be held by only one node, and if it's held elsewhere, HARP
+    Manager gives up and tries again later.
+  :translated_contents: もっと多くのことが起こりますが、この単純化されたバージョンは何が起こっているのかを説明しています。リーダーリースは1つのノードでのみ保持でき、他の場所で保持されている場合、
+    HARPマネージャーはあきらめて後で再試行します。
+  :original_contents: 'A lot more occurs, but this simplified version explains what''s
+    happening. The leader lease can be held by only one node, and if it''s held elsewhere,
+    HARP Manager gives up and tries again later. '
+- :key: '37'
+  :contents: edb_excla_notran_1 Depending on the chosen consensus layer, rather than
+    repeatedly looping to check the status of the leader lease, HARP subscribes to
+    notifications. In this case, it can respond immediately any time the state of
+    the lease changes rather than polling. Currently this functionality is restricted
+    to the etcd consensus layer.
+  :translated_contents: edb_excla_notran_1 選択されたコンセンサスレイヤーに応じて、リーダーリースのステータスを確認するために繰り返しループするのではなく、
+    HARPは通知をサブスクライブします。この場合、リースの状態が変化するたびに、ポーリングではなくすぐに応答できます。現在、この機能はetcdコンセンサスレイヤーに制限されています。
+  :original_contents: 'edb_excla_notran_1 Depending on the chosen consensus layer,
+    rather than repeatedly looping to check the status of the leader lease, HARP subscribes
+    to notifications. In this case, it can respond immediately any time the state
+    of the lease changes rather than polling. Currently this functionality is restricted
+    to the etcd consensus layer. '
+- :key: '38'
+  :contents: This means HARP itself doesn't hold elections or manage quorum, which
+    is delegated to the consensus layer. A quorum of the consensus layer must acknowledge
+    the act of obtaining the lease, so if the request succeeds, that node leads the
+    cluster in that location.
+  :translated_contents: これは、 HARP自分自身が選挙を行わず、コンセンサスレイヤーに委任されるクォーラムを管理しないことを意味します。コンセンサスレイヤーのクォーラムはリースを取得する行為を確認する必要があるため、要求が成功した場合、そのノードはその場所のクラスターをリードします。
+  :original_contents: 'This means HARP itself doesn''t hold elections or manage quorum,
+    which is delegated to the consensus layer. A quorum of the consensus layer must
+    acknowledge the act of obtaining the lease, so if the request succeeds, that node
+    leads the cluster in that location. '
+- :key: '39'
+  :contents: "### Connection routing"
+  :translated_contents: "### 接続ルーティング"
+  :original_contents: "### Connection routing "
+- :key: '40'
+  :contents: 'Once the role of the lead master is established, connections are handled
+    with a similar deterministic result as reflected by HARP Proxy. Consider a case
+    where HARP Proxy needs to determine the connection target for a particular backend
+    resource:'
+  :translated_contents: リードマスターのロールが確立されると、接続はHARPプロキシに反映されるのと同様の決定論的な結果で処理されます。 HARPプロキシが特定のバックエンドリソースの接続ターゲットを決定する必要がある場合を考えます。
+  :original_contents: 'Once the role of the lead master is established, connections
+    are handled with a similar deterministic result as reflected by HARP Proxy. Consider
+    a case where HARP Proxy needs to determine the connection target for a particular
+    backend resource: '
+- :key: '41'
+  :contents: 1. HARP Proxy interrogates the consensus layer for the current lead master
+    in its configured location.
+  :translated_contents: 1. HARPプロキシは、設定された場所にある現在のリードマスターのコンセンサスレイヤーを照会します。
+  :original_contents: '1. HARP Proxy interrogates the consensus layer for the current
+    lead master in its configured location. '
+- :key: '42'
+  :contents: '2. If this is unset or in transition: - New client connections to Postgres
+    are barred, but clients accumulate and are in a paused state until a lead master
+    appears. - Existing client connections are allowed to complete current transactions
+    and are then reverted to a similar pending state as new connections.'
+  :translated_contents: 2.これが設定されていないか移行中の場合： - Postgresへの新しいクライアント接続は禁止されていますが、クライアントは蓄積され、リードマスターが表示されるまで一時停止状態になります。
+    -既存のクライアント接続は現在のトランザクションを完了することが許可され、新しい接続と同様の保留状態に戻ります。
+  :original_contents: '2. If this is unset or in transition: - New client connections
+    to Postgres are barred, but clients accumulate and are in a paused state until
+    a lead master appears. - Existing client connections are allowed to complete current
+    transactions and are then reverted to a similar pending state as new connections. '
+- :key: '43'
+  :contents: 3. Client connections are forwarded to the lead master.
+  :translated_contents: 3.クライアント接続はリードマスターに転送されます。
+  :original_contents: '3. Client connections are forwarded to the lead master. '
+- :key: '44'
+  :contents: The interplay shown in this case doesn't require any interaction with
+    either HARP Manager or Postgres. The consensus layer is the source of all truth
+    from the proxy's perspective.
+  :translated_contents: この場合に示される相互作用は、 HARP ManagerまたはPostgresとの相互作用を必要としません。コンセンサスレイヤーは、プロキシの観点からのすべての真実のソースです。
+  :original_contents: 'The interplay shown in this case doesn''t require any interaction
+    with either HARP Manager or Postgres. The consensus layer is the source of all
+    truth from the proxy''s perspective. '
+- :key: '45'
+  :contents: "### Colocation"
+  :translated_contents: "### コロケーション"
+  :original_contents: "### Colocation "
+- :key: '46'
+  :contents: 'The arrangement of the work units is such that their organization must
+    follow these principles:'
+  :translated_contents: ワークユニットの配置は、組織が次の原則に従う必要があります。
+  :original_contents: 'The arrangement of the work units is such that their organization
+    must follow these principles: '
+- :key: '47'
+  :contents: 1. The manager and Postgres units must exist concomitantly in the same
+    node.
+  :translated_contents: 1. managerユニットとPostgresユニットが同一ノードに存在すること。
+  :original_contents: '1. The manager and Postgres units must exist concomitantly
+    in the same node. '
+- :key: '48'
+  :contents: 2. The contents of the consensus layer dictate the prescriptive role
+    of all operational work units.
+  :translated_contents: 2.コンセンサスレイヤーの内容は、すべての運用作業単位の規範的な役割を指示します。
+  :original_contents: '2. The contents of the consensus layer dictate the prescriptive
+    role of all operational work units. '
+- :key: '49'
+  :contents: This arrangement delegates cluster quorum responsibilities to the consensus
+    layer, while HARP leverages it for critical role assignments and key/value storage.
+    Neither storage nor retrieval succeeds if the consensus layer is inoperable or
+    unreachable, thus preventing rogue Postgres nodes from accepting connections.
+  :translated_contents: この取り決めは、クラスタークォーラムの責任をコンセンサスレイヤーに委任しますが、 HARPは重要なロールの割り当てとキー/値のストレージにそれを活用します。コンセンサスレイヤーが動作不能または到達不能の場合、ストレージも取得も成功しないため、不正なPostgresノードが接続を受け入れることを防ぎます。
+  :original_contents: 'This arrangement delegates cluster quorum responsibilities
+    to the consensus layer, while HARP leverages it for critical role assignments
+    and key/value storage. Neither storage nor retrieval succeeds if the consensus
+    layer is inoperable or unreachable, thus preventing rogue Postgres nodes from
+    accepting connections. '
+- :key: '50'
+  :contents: As a result, the consensus layer generally exists outside of HARP or
+    HARP-managed nodes for maximum safety. Our reference diagrams show this separation,
+    although it isn't required.
+  :translated_contents: その結果、コンセンサスレイヤーは一般に、安全性を最大限に高めるためにHARPまたはHARP管理対象ノードの外部に存在します。リファレンス図はこの分離を示していますが、必須ではありません。
+  :original_contents: 'As a result, the consensus layer generally exists outside of
+    HARP or HARP-managed nodes for maximum safety. Our reference diagrams show this
+    separation, although it isn''t required. '
+- :key: '51'
+  :contents: edb_excla_notran_2 To operate and manage cluster state, BDR contains
+    its own implementation of the Raft Consensus model. You can configure HARP to
+    leverage this same layer to reduce reliance on external dependencies and to preserve
+    server resources. However, certain drawbacks to this approach are discussed in
+    edb_lk_asis_1 .
+  :translated_contents: edb_excla_notran_2 クラスター状態を操作および管理するために、 BDRにはRaftコンセンサスモデルの独自の実装が含まれています。この同じレイヤーを利用するようにHARPを構成して、外部依存関係への依存を減らし、サーバーリソースを保持できます。ただし、このアプローチの特定の欠点については、
+    edb_lk_asis_1 で説明されています。
+  :original_contents: 'edb_excla_notran_2 To operate and manage cluster state, BDR
+    contains its own implementation of the Raft Consensus model. You can configure
+    HARP to leverage this same layer to reduce reliance on external dependencies and
+    to preserve server resources. However, certain drawbacks to this approach are
+    discussed in edb_lk_asis_1 . '
+- :key: '52'
+  :contents: "## Recommended architecture and use"
+  :translated_contents: "## 推奨されるアーキテクチャと使用"
+  :original_contents: "## Recommended architecture and use "
+- :key: '53'
+  :contents: HARP was primarily designed to represent a BDR Always-On architecture
+    that resides in two or more data centers and consists of at least five BDR nodes.
+    This configuration doesn't count any logical standby nodes.
+  :translated_contents: HARPは、主に2つ以上のデータセンターにあり、少なくとも5つのBDRノードで構成されるBDR Always-Onアーキテクチャを表すように設計されました。この構成では、ロジカルスタンバイノードはカウントされません。
+  :original_contents: 'HARP was primarily designed to represent a BDR Always-On architecture
+    that resides in two or more data centers and consists of at least five BDR nodes.
+    This configuration doesn''t count any logical standby nodes. '
+- :key: '54'
+  :contents: 'The following diagram shows the current and standard representation:'
+  :translated_contents: 次の図は、現在および標準の表現を示しています。
+  :original_contents: 'The following diagram shows the current and standard representation: '
+- :key: '55'
+  :contents: "!edb_tran_1"
+  :translated_contents: "![BDR Always-On Reference Architecture](images/bdr-ao-spec.png)"
+  :original_contents: "![BDR Always-On Reference Architecture](images/bdr-ao-spec.png) "
+- :key: '56'
+  :contents: In this diagram, HARP Manager exists on BDR Nodes 1-4. The initial state
+    of the cluster is that BDR Node 1 is the lead master of DC A, and BDR Node 3 is
+    the lead master of DC B.
+  :translated_contents: この図では、 HARP ManagerはBDRノード1〜4に存在します。クラスターの初期状態は、 BDRノード1がDC
+    Aのリードマスターであり、 BDRノード3がDC Bのリードマスターです。
+  :original_contents: 'In this diagram, HARP Manager exists on BDR Nodes 1-4. The
+    initial state of the cluster is that BDR Node 1 is the lead master of DC A, and
+    BDR Node 3 is the lead master of DC B. '
+- :key: '57'
+  :contents: This configuration results in any HARP Proxy resource in DC A connecting
+    to BDR Node 1 and the HARP Proxy resource in DC B connecting to BDR Node 3.
+  :translated_contents: この構成により、DC AのHARPプロキシリソースがBDRノード1に接続され、DC BのHARPプロキシリソースがBDRノード3に接続されます。
+  :original_contents: 'This configuration results in any HARP Proxy resource in DC
+    A connecting to BDR Node 1 and the HARP Proxy resource in DC B connecting to BDR
+    Node 3. '
+- :key: '58'
+  :contents: edb_excla_notran_3 While this diagram shows only a single HARP Proxy
+    per DC, this is an example only and should not be considered a single point of
+    failure. Any number of HARP Proxy nodes can exist, and they all direct application
+    traffic to the same node.
+  :translated_contents: edb_excla_notran_3 この図はDCごとに1つのHARPプロキシのみを示していますが、これは例にすぎず、単一障害点とは見なされません。
+    HARPプロキシノードはいくつでも存在でき、それらはすべてアプリケーショントラフィックを同じノードに転送します。
+  :original_contents: 'edb_excla_notran_3 While this diagram shows only a single HARP
+    Proxy per DC, this is an example only and should not be considered a single point
+    of failure. Any number of HARP Proxy nodes can exist, and they all direct application
+    traffic to the same node. '
+- :key: '59'
+  :contents: "### Location configuration"
+  :translated_contents: "### ロケーション構成"
+  :original_contents: "### Location configuration "
+- :key: '60'
+  :contents: For multiple BDR nodes to be eligible to take the lead master lock in
+    a location, you must define a location in the edb_tran_1 configuration file.
+  :translated_contents: 複数のBDRノードがロケーションでリードマスターロックを取得できるようにするには、 `config.yml`構成ファイルでロケーションを定義する必要があります。
+  :original_contents: 'For multiple BDR nodes to be eligible to take the lead master
+    lock in a location, you must define a location in the `config.yml` configuration
+    file. '
+- :key: '61'
+  :contents: 'To reproduce the BDR Always-On reference architecture shown in the diagram,
+    include these lines in the edb_tran_1 configuration for BDR Nodes 1 and 2:'
+  :translated_contents: 図に示されているBDR Always-Onリファレンスアーキテクチャを再現するには、 BDRノード1および2の`config.yml`構成に次の行を含めます。
+  :original_contents: 'To reproduce the BDR Always-On reference architecture shown
+    in the diagram, include these lines in the `config.yml` configuration for BDR
+    Nodes 1 and 2: '
+- :key: '62'
+  :contents: edb_notranlate_0
+  :translated_contents: edb_notranlate_0
+  :original_contents: " edb_notranlate_0  "
+- :key: '63'
+  :contents: 'For BDR Nodes 3 and 4, add:'
+  :translated_contents: BDRノード3および4の場合、次を追加します。
+  :original_contents: 'For BDR Nodes 3 and 4, add: '
+- :key: '64'
+  :contents: edb_notranlate_1
+  :translated_contents: edb_notranlate_1
+  :original_contents: " edb_notranlate_1  "
+- :key: '65'
+  :contents: This applies to any HARP Proxy nodes that are designated in those respective
+    data centers as well.
+  :translated_contents: これは、これらのそれぞれのデータセンターで指定されたHARPプロキシノードにも適用されます。
+  :original_contents: 'This applies to any HARP Proxy nodes that are designated in
+    those respective data centers as well. '
+- :key: '66'
+  :contents: "### BDR 3.7 compatibility"
+  :translated_contents: "### BDR 3.7との互換性"
+  :original_contents: "### BDR 3.7 compatibility "
+- :key: '67'
+  :contents: 'BDR 3.7 and later offers more direct location definition by assigning
+    a location to the BDR node. This is done by calling the following SQL API function
+    while connected to the BDR node. So for BDR Nodes 1 and 2, you might do this:'
+  :translated_contents: BDR 3.7以降では、 BDRノードにロケーションを割り当てることにより、より直接的なロケーション定義を提供します。これは、
+    BDRノードに接続しているときに次のSQL APIファンクションを呼び出すことによって実行されます。したがって、 BDRノード1および2の場合、次のようにします。
+  :original_contents: 'BDR 3.7 and later offers more direct location definition by
+    assigning a location to the BDR node. This is done by calling the following SQL
+    API function while connected to the BDR node. So for BDR Nodes 1 and 2, you might
+    do this: '
+- :key: '68'
+  :contents: edb_notranlate_2
+  :translated_contents: edb_notranlate_2
+  :original_contents: " edb_notranlate_2  "
+- :key: '69'
+  :contents: 'And for BDR Nodes 3 and 4:'
+  :translated_contents: BDRノード3および4の場合：
+  :original_contents: 'And for BDR Nodes 3 and 4: '
+- :key: '70'
+  :contents: edb_notranlate_3
+  :translated_contents: edb_notranlate_3
+  :original_contents: " edb_notranlate_3  "

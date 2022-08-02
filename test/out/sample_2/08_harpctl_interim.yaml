@@ -1,0 +1,637 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# harpctl command-line tool`"
+  :original_contents: "`# harpctl command-line tool` "
+- :key: '2'
+  :contents: edb_tran_1 is a command-line tool for directly manipulating the consensus
+    layer contents to fit desired cluster geometry. You can use it to, for example,
+    examine node status, "promote" a node to lead master, disable/enable cluster management,
+    bootstrap cluster settings, and so on.
+  :translated_contents: "`harpctl`は、コンセンサスレイヤーのコンテンツを直接操作して、目的のクラスタージオメトリに合わせるためのコマンドラインツールです。これを使用して、ノードのステータスを調べたり、ノードをリードマスターに「昇格」させたり、クラスター管理を無効/有効にしたり、クラスター設定をブートストラップしたりすることができます。"
+  :original_contents: '`harpctl` is a command-line tool for directly manipulating
+    the consensus layer contents to fit desired cluster geometry. You can use it to,
+    for example, examine node status, "promote" a node to lead master, disable/enable
+    cluster management, bootstrap cluster settings, and so on. '
+- :key: '3'
+  :contents: "## Synopsis"
+  :translated_contents: "##概要"
+  :original_contents: "## Synopsis "
+- :key: '4'
+  :contents: edb_notranlate_0
+  :translated_contents: edb_notranlate_0
+  :original_contents: " edb_notranlate_0  "
+- :key: '5'
+  :contents: In addition to this basic synopsis, each of the available commands has
+    its own series of allowed subcommands and flags.
+  :translated_contents: この基本的な概要に加えて、使用可能な各コマンドには、独自の一連の使用可能なサブコマンドとフラグがあります。
+  :original_contents: 'In addition to this basic synopsis, each of the available commands
+    has its own series of allowed subcommands and flags. '
+- :key: '6'
+  :contents: "## Configuration"
+  :translated_contents: "## 構成"
+  :original_contents: "## Configuration "
+- :key: '7'
+  :contents: 'edb_tran_1 must interact with the consensus  layer to operate. This
+    means a certain minimum amount of settings must be  defined in edb_tran_2 for
+    successful execution. This includes:'
+  :translated_contents: "`harpctl`は、動作するためにコンセンサスレイヤーと対話する必要があります。これは、正常に実行するには、 `config.yml`
+    に特定の最小量の設定を定義する必要があることを意味します。これには以下が含まれます。"
+  :original_contents: "`harpctl` must interact with the consensus  layer to operate.
+    This means a certain minimum amount of settings must be  defined in `config.yml`
+    for successful execution. This includes: "
+- :key: '8'
+  :contents: "*  edb_tran_1 "
+  :translated_contents: "* `dcs.driver`"
+  :original_contents: "* `dcs.driver` "
+- :key: '9'
+  :contents: "*  edb_tran_1 "
+  :translated_contents: "* `dcs.endpoints`"
+  :original_contents: "* `dcs.endpoints` "
+- :key: '10'
+  :contents: "*  edb_tran_1 "
+  :translated_contents: "* `cluster.name`"
+  :original_contents: "* `cluster.name` "
+- :key: '11'
+  :contents: 'As an example using etcd:'
+  :translated_contents: etcdを使用した例：
+  :original_contents: 'As an example using etcd: '
+- :key: '12'
+  :contents: edb_notranlate_1
+  :translated_contents: edb_notranlate_1
+  :original_contents: " edb_notranlate_1  "
+- :key: '13'
+  :contents: See edb_lk_asis_1  for details.
+  :translated_contents: 詳細はedb_lk_asis_1を参照してください。
+  :original_contents: 'See edb_lk_asis_1  for details. '
+- :key: '14'
+  :contents: "## Execution"
+  :translated_contents: "## 実行"
+  :original_contents: "## Execution "
+- :key: '15'
+  :contents: 'Execute edb_tran_1 like this:'
+  :translated_contents: 次のように `harpctl` を実行します。
+  :original_contents: 'Execute `harpctl` like this: '
+- :key: '16'
+  :contents: edb_notranlate_2
+  :translated_contents: edb_notranlate_2
+  :original_contents: " edb_notranlate_2  "
+- :key: '17'
+  :contents: 'Each command has its own series of subcommands and flags. Further help
+    for  these are available by executing this command:'
+  :translated_contents: 各コマンドには、独自のシリーズのサブコマンドとフラグがあります。次のコマンドを実行すると、これらのヘルプを利用できます。
+  :original_contents: 'Each command has its own series of subcommands and flags. Further
+    help for  these are available by executing this command: '
+- :key: '18'
+  :contents: edb_notranlate_3
+  :translated_contents: edb_notranlate_3
+  :original_contents: " edb_notranlate_3  "
+- :key: '19'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl apply`"
+  :original_contents: "## `harpctl apply` "
+- :key: '20'
+  :contents: You must use an edb_tran_1 command to "bootstrap" a HARP cluster using
+    a file that defines various attributes of the intended cluster.
+  :translated_contents: "`apply`コマンドを使用して、目的のクラスターのさまざまな属性を定義するファイルを使用してHARPクラスターを「ブートストラップ」する必要があります。"
+  :original_contents: 'You must use an `apply` command to "bootstrap" a HARP cluster
+    using a file that defines various attributes of the intended cluster. '
+- :key: '21'
+  :contents: 'Execute an edb_tran_1 command like this:'
+  :translated_contents: 次のような`apply`コマンドを実行します。
+  :original_contents: 'Execute an `apply` command like this: '
+- :key: '22'
+  :contents: edb_notranlate_4
+  :translated_contents: edb_notranlate_4
+  :original_contents: " edb_notranlate_4  "
+- :key: '23'
+  :contents: This essentially creates all of the initial cluster metadata, default
+    or custom  management settings, and so on. This is done here because the DCS is
+    used as  the ultimate source of truth for managing the cluster, and this makes
+    it  possible to change these settings dynamically.
+  :translated_contents: これにより、基本的に、初期クラスターメタデータ、デフォルトまたはカスタムの管理設定などがすべて作成されます。これは、DCSがクラスターを管理するための究極のソースとして使用され、これらの設定を動的に変更できるためです。
+  :original_contents: 'This essentially creates all of the initial cluster metadata,
+    default or custom  management settings, and so on. This is done here because the
+    DCS is used as  the ultimate source of truth for managing the cluster, and this
+    makes it  possible to change these settings dynamically. '
+- :key: '24'
+  :contents: This can either be done once to bootstrap the entire cluster, once per
+    type of object, or even on a per-node basis for the sake of simplicity.
+  :translated_contents: これは、クラスター全体をブートストラップするために1回、オブジェクトのタイプごとに1回、または簡単にするためにノードごとに実行できます。
+  :original_contents: 'This can either be done once to bootstrap the entire cluster,
+    once per type of object, or even on a per-node basis for the sake of simplicity. '
+- :key: '25'
+  :contents: 'This is an example of a bootstrap file for a single node:'
+  :translated_contents: これは、単一ノードのブートストラップファイルの例です。
+  :original_contents: 'This is an example of a bootstrap file for a single node: '
+- :key: '26'
+  :contents: edb_notranlate_5
+  :translated_contents: edb_notranlate_5
+  :original_contents: " edb_notranlate_5  "
+- :key: '27'
+  :contents: As seen here, it is good practice to always include a cluster name preamble
+    to  ensure all changes target the correct HARP cluster, in case several are  operating
+    in the same environment.
+  :translated_contents: ここで見られるように、複数の環境が同じ環境で動作している場合、すべての変更が正しいHARPクラスタをターゲットと保証に、常にクラスタ名前のプリアンブルを含めることをお勧めします。
+  :original_contents: 'As seen here, it is good practice to always include a cluster
+    name preamble to  ensure all changes target the correct HARP cluster, in case
+    several are  operating in the same environment. '
+- :key: '28'
+  :contents: Once edb_tran_1 completes without error, the node is integrated with
+    the rest  of the cluster.
+  :translated_contents: "`apply`がエラーなしで完了すると、ノードはクラスターの残りの部分と統合されます。"
+  :original_contents: 'Once `apply` completes without error, the node is integrated
+    with the rest  of the cluster. '
+- :key: '29'
+  :contents: edb_excla_notran_1 You can also use this command to bootstrap the entire
+    cluster at once since all defined sections are applied at the same time. However,
+    we don't encourage this use for anything but testing as it increases the difficulty
+    of validating each portion of the cluster during initial definition.
+  :translated_contents: edb_excla_notran_1 定義されたすべてのセクションが同時に適用されるため、このコマンドを使用してクラスター全体を一度にブートストラップすることもできます。ただし、初期定義中にクラスターの各部分を検証するのが難しくなるため、テスト以外でのこの使用はお勧めしません。
+  :original_contents: 'edb_excla_notran_1 You can also use this command to bootstrap
+    the entire cluster at once since all defined sections are applied at the same
+    time. However, we don''t encourage this use for anything but testing as it increases
+    the difficulty of validating each portion of the cluster during initial definition. '
+- :key: '30'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl fence`"
+  :original_contents: "## `harpctl fence` "
+- :key: '31'
+  :contents: Marks the local or specified node as fenced. A node with this status
+    is  essentially completely excluded from the cluster. HARP Proxy doesn't send
+    it  traffic, its representative HARP Manager doesn't claim the lead master lease,  and
+    further steps are also taken. If running, HARP Manager stops Postgres  on the
+    node as well.
+  :translated_contents: ローカルまたは指定されたノードをフェンス済みとしてマークします。このステータスのノードは、基本的にクラスターから完全に除外されます。
+    HARPプロキシはトラフィックを送信せず、その代表的なHARPマネージャーはリードマスターリースを要求せず、さらなる手順も実行されます。実行されている場合、
+    HARP ManagerはノードでPostgresも停止します。
+  :original_contents: 'Marks the local or specified node as fenced. A node with this
+    status is  essentially completely excluded from the cluster. HARP Proxy doesn''t
+    send it  traffic, its representative HARP Manager doesn''t claim the lead master
+    lease,  and further steps are also taken. If running, HARP Manager stops Postgres  on
+    the node as well. '
+- :key: '32'
+  :contents: 'Execute a edb_tran_1 command like this:'
+  :translated_contents: 次のような`fence`コマンドを実行します。
+  :original_contents: 'Execute a `fence` command like this: '
+- :key: '33'
+  :contents: edb_notranlate_6
+  :translated_contents: edb_notranlate_6
+  :original_contents: " edb_notranlate_6  "
+- :key: '34'
+  :contents: The node-name is optional; if omitted, edb_tran_1 uses the name of the
+    locally configured node.
+  :translated_contents: node-nameはオプションです。省略された場合、 `harpctl`はローカルに構成されたノードの名前を使用します。
+  :original_contents: 'The node-name is optional; if omitted, `harpctl` uses the name
+    of the locally configured node. '
+- :key: '35'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl get`"
+  :original_contents: "## `harpctl get` "
+- :key: '36'
+  :contents: 'Fetches information stored in the consensus layer for various elements
+    of the cluster. This includes nodes, locations, the cluster, and so on. The full
+    list includes:'
+  :translated_contents: クラスターのさまざまな要素のコンセンサスレイヤーに保存されている情報を取得します。これには、ノード、場所、クラスターなどが含まれます。完全なリストには次のものが含まれます。
+  :original_contents: 'Fetches information stored in the consensus layer for various
+    elements of the cluster. This includes nodes, locations, the cluster, and so on.
+    The full list includes: '
+- :key: '37'
+  :contents: "*  edb_tran_1 &mdash; Returns the cluster state. "
+  :translated_contents: "* `cluster` &mdash;クラスターの状態を返します。"
+  :original_contents: "* `cluster` &mdash; Returns the cluster state. "
+- :key: '38'
+  :contents: "*  edb_tran_1 &mdash; Returns the current or specified location leader. "
+  :translated_contents: "* `leader` &mdash;現在または指定されたロケーションリーダーを返します。"
+  :original_contents: "* `leader` &mdash; Returns the current or specified location
+    leader. "
+- :key: '39'
+  :contents: "*  edb_tran_1 &mdash; Returns current or specified location information. "
+  :translated_contents: "* `location` &mdash;現在または指定された場所情報を返します。"
+  :original_contents: "* `location` &mdash; Returns current or specified location
+    information. "
+- :key: '40'
+  :contents: "*  edb_tran_1 &mdash; Returns list of all locations. "
+  :translated_contents: "* `locations` &mdash;すべてのロケーションのリストを返します。"
+  :original_contents: "* `locations` &mdash; Returns list of all locations. "
+- :key: '41'
+  :contents: "*  edb_tran_1 &mdash; Returns the specified Postgres node. "
+  :translated_contents: "* `node` &mdash;指定されたPostgresノードを返します。"
+  :original_contents: "* `node` &mdash; Returns the specified Postgres node. "
+- :key: '42'
+  :contents: "*  edb_tran_1 &mdash; Returns list of all Postgres nodes. "
+  :translated_contents: "* `nodes` &mdash;すべてのPostgresノードのリストを返します。"
+  :original_contents: "* `nodes` &mdash; Returns list of all Postgres nodes. "
+- :key: '43'
+  :contents: "*  edb_tran_1 &mdash; Returns current or specified proxy information. "
+  :translated_contents: "* `proxy` &mdash;現在のプロキシ情報または指定されたプロキシ情報を返します。"
+  :original_contents: "* `proxy` &mdash; Returns current or specified proxy information. "
+- :key: '44'
+  :contents: "*  edb_tran_1 &mdash; Returns list of all proxy nodes. "
+  :translated_contents: "* `proxies` &mdash;すべてのプロキシノードのリストを返します。"
+  :original_contents: "* `proxies` &mdash; Returns list of all proxy nodes. "
+- :key: '45'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get cluster`"
+  :original_contents: "### `harpctl get cluster` "
+- :key: '46'
+  :contents: 'Fetches information stored in the consensus layer for the current cluster:'
+  :translated_contents: 現在のクラスターのコンセンサスレイヤーに保存されている情報を取得します。
+  :original_contents: 'Fetches information stored in the consensus layer for the current
+    cluster: '
+- :key: '47'
+  :contents: edb_notranlate_7
+  :translated_contents: edb_notranlate_7
+  :original_contents: " edb_notranlate_7  "
+- :key: '48'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get leader`"
+  :original_contents: "### `harpctl get leader` "
+- :key: '49'
+  :contents: Fetches node information for the current lead master stored in the DCS
+    for the  specified location. If no location is passed, edb_tran_1 attempts to  derive
+    it based on the location of the current node where it was executed.
+  :translated_contents: 指定された場所のDCSに保存されている現在のリードマスターのノード情報を取得します。ロケーションが渡されない場合、
+    `harpctl`は、実行された現在のノードのロケーションに基づいてそれを導き出そうとします。
+  :original_contents: 'Fetches node information for the current lead master stored
+    in the DCS for the  specified location. If no location is passed, `harpctl` attempts
+    to  derive it based on the location of the current node where it was executed. '
+- :key: '50'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '51'
+  :contents: edb_notranlate_8
+  :translated_contents: edb_notranlate_8
+  :original_contents: " edb_notranlate_8  "
+- :key: '52'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get location`"
+  :original_contents: "### `harpctl get location` "
+- :key: '53'
+  :contents: Fetches location information for the specified location. If no location
+    is  passed, edb_tran_1 attempts to derive it based on the location of the  current
+    node where it was executed.
+  :translated_contents: 指定された場所の場所情報を取得します。ロケーションが渡されない場合、 `harpctl`は、実行された現在のノードのロケーションに基づいてそれを導き出そうとします。
+  :original_contents: 'Fetches location information for the specified location. If
+    no location is  passed, `harpctl` attempts to derive it based on the location
+    of the  current node where it was executed. '
+- :key: '54'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '55'
+  :contents: edb_notranlate_9
+  :translated_contents: edb_notranlate_9
+  :original_contents: " edb_notranlate_9  "
+- :key: '56'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get locations`"
+  :original_contents: "### `harpctl get locations` "
+- :key: '57'
+  :contents: Fetches information for all locations currently present in the DCS.
+  :translated_contents: DCSに現在存在するすべてのロケーションの情報を取得します。
+  :original_contents: 'Fetches information for all locations currently present in
+    the DCS. '
+- :key: '58'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '59'
+  :contents: edb_notranlate_10
+  :translated_contents: edb_notranlate_10
+  :original_contents: " edb_notranlate_10  "
+- :key: '60'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get node`"
+  :original_contents: "### `harpctl get node` "
+- :key: '61'
+  :contents: Fetches node information stored in the DCS for the specified node.
+  :translated_contents: 指定されたノードのDCSに格納されているノード情報を取得します。
+  :original_contents: 'Fetches node information stored in the DCS for the specified
+    node. '
+- :key: '62'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '63'
+  :contents: edb_notranlate_11
+  :translated_contents: edb_notranlate_11
+  :original_contents: " edb_notranlate_11  "
+- :key: '64'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get nodes`"
+  :original_contents: "### `harpctl get nodes` "
+- :key: '65'
+  :contents: Fetches node information stored in the DCS for the all nodes in the cluster.
+  :translated_contents: クラスター内のすべてのノードのDCSに格納されているノード情報を取得します。
+  :original_contents: 'Fetches node information stored in the DCS for the all nodes
+    in the cluster. '
+- :key: '66'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '67'
+  :contents: edb_notranlate_12
+  :translated_contents: edb_notranlate_12
+  :original_contents: " edb_notranlate_12  "
+- :key: '68'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get proxy`"
+  :original_contents: "### `harpctl get proxy` "
+- :key: '69'
+  :contents: Fetches proxy information stored in the DCS for specified proxy. Specify
+    edb_tran_1 to see proxy defaults for this cluster.
+  :translated_contents: 指定されたプロキシのDCSに格納されているプロキシ情報を取得します。このクラスターのプロキシのデフォルトを表示するには、
+    `global` を指定します。
+  :original_contents: 'Fetches proxy information stored in the DCS for specified proxy.
+    Specify `global` to see proxy defaults for this cluster. '
+- :key: '70'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '71'
+  :contents: edb_notranlate_13
+  :translated_contents: edb_notranlate_13
+  :original_contents: " edb_notranlate_13  "
+- :key: '72'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl get proxies`"
+  :original_contents: "### `harpctl get proxies` "
+- :key: '73'
+  :contents: Fetches proxy information stored in the DCS for all proxies in the cluster.  Additionally,
+    lists the edb_tran_1 pseudo-proxy for default proxy settings.
+  :translated_contents: クラスター内のすべてのプロキシのDCSに保存されているプロキシ情報を取得します。さらに、デフォルトのプロキシ設定の`global`擬似プロキシをリストします。
+  :original_contents: 'Fetches proxy information stored in the DCS for all proxies
+    in the cluster.  Additionally, lists the `global` pseudo-proxy for default proxy
+    settings. '
+- :key: '74'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '75'
+  :contents: edb_notranlate_14
+  :translated_contents: edb_notranlate_14
+  :original_contents: " edb_notranlate_14  "
+- :key: '76'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl manage`"
+  :original_contents: "## `harpctl manage` "
+- :key: '77'
+  :contents: If a cluster isn't in a managed state, instructs all HARP Manager services
+    to resume monitoring Postgres and updating the consensus layer. Do this after
+    maintenance is complete following HARP software updates or other significant changes
+    that might affect the whole cluster.
+  :translated_contents: クラスターが管理状態にない場合、Postgresのモニタリングとコンセンサスレイヤーの更新を再開するようにすべてのHARP
+    Managerサービスに指示します。これは、 HARPソフトウェアの更新またはクラスター全体に影響を与える可能性のあるその他の重要な変更に続いて、メンテナンスが完了した後に実行します。
+  :original_contents: 'If a cluster isn''t in a managed state, instructs all HARP
+    Manager services to resume monitoring Postgres and updating the consensus layer.
+    Do this after maintenance is complete following HARP software updates or other
+    significant changes that might affect the whole cluster. '
+- :key: '78'
+  :contents: 'Execute a edb_tran_1 command like this:'
+  :translated_contents: 次のような`manage`コマンドを実行します。
+  :original_contents: 'Execute a `manage` command like this: '
+- :key: '79'
+  :contents: edb_notranlate_15
+  :translated_contents: edb_notranlate_15
+  :original_contents: " edb_notranlate_15  "
+- :key: '80'
+  :contents: edb_excla_notran_2 Currently you can enable or disable cluster management
+    only at the edb_tran_1 level. Later versions will also make it possible to do
+    this for individual nodes or proxies.
+  :translated_contents: edb_excla_notran_2 現在、クラスター管理は`cluster`レベルでのみ有効または無効にできます。後のバージョンでは、個々のノードまたはプロキシに対してこれを行うこともできます。
+  :original_contents: 'edb_excla_notran_2 Currently you can enable or disable cluster
+    management only at the `cluster` level. Later versions will also make it possible
+    to do this for individual nodes or proxies. '
+- :key: '81'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl promote`"
+  :original_contents: "## `harpctl promote` "
+- :key: '82'
+  :contents: 'Promotes the next available node that meets leadership requirements
+    to lead  master in the current Location. Since this is a requested event, it invokes
+    a  smooth handover where:'
+  :translated_contents: リーダーシップ要件を満たす次の利用可能なノードを現在の場所のリードマスターに昇格させます。これは要求されたイベントであるため、次の場合にスムーズなハンドオーバーを呼び出します。
+  :original_contents: 'Promotes the next available node that meets leadership requirements
+    to lead  master in the current Location. Since this is a requested event, it invokes
+    a  smooth handover where: '
+- :key: '83'
+  :contents: '1. The existing lead master releases the lead master lease, provided:
+    - If CAMO is enabled, the promoted node must be up to date and CAMO ready, and
+    the CAMO queue must have less than edb_tran_2 bytes remaining to be applied. -
+    Replication lag between the old lead master and the promoted node is less than
+    edb_tran_4.'
+  :translated_contents: 1.既存のリードマスターがリードマスターリースを解放する。 -古いリードマスターと昇格したノード間のレプリケーションラグは`node.maximum_lag`未満です。
+  :original_contents: '1. The existing lead master releases the lead master lease,
+    provided: - If CAMO is enabled, the promoted node must be up to date and CAMO
+    ready, and the CAMO queue must have less than `node.maximum_camo_lag` bytes remaining
+    to be applied. - Replication lag between the old lead master and the promoted
+    node is less than `node.maximum_lag`. '
+- :key: '84'
+  :contents: 2. The promoted node is the only valid candidate to take the lead master
+    lease and does so as soon as it is released by the current holder. All  other
+    nodes ignore the unset lead master lease. - If CAMO is enabled, the promoted node
+    temporarily disables client traffic until the CAMO queue is fully applied, even
+    though it holds the  lead master lease.
+  :translated_contents: 2.昇格したノードは、リードマスターリースを取得する唯一の有効な候補であり、現在の所有者によって解放されるとすぐに取得します。他のすべてのノードは、設定されていないリードマスターリースを無視します。
+    -CAMOが有効になっている場合、昇格したノードは、リードマスターリースを保持していても、CAMOキューが完全に適用されるまでクライアントトラフィックを一時的に無効にします。
+  :original_contents: '2. The promoted node is the only valid candidate to take the
+    lead master lease and does so as soon as it is released by the current holder.
+    All  other nodes ignore the unset lead master lease. - If CAMO is enabled, the
+    promoted node temporarily disables client traffic until the CAMO queue is fully
+    applied, even though it holds the  lead master lease. '
+- :key: '85'
+  :contents: 3. HARP Proxy, if using pgbouncer, will edb_tran_1 connections to allow
+    ongoing  transactions to complete. Once the lead master lease is claimed by the
+    promoted node, it reconfigures PgBouncer for the new connection target and resumes
+    database traffic. If HARP Proxy is using the builtin proxy, it terminates existing  connections
+    and creates new connections to the lead master as new connections are requested
+    from the client.
+  :translated_contents: 3. HARPプロキシは、pgbouncerを使用している場合、進行中のトランザクションを完了できるように`PAUSE`接続します。昇格したノードがリードマスターリースを要求すると、新しい接続ターゲットのPgBouncerを再構成し、データベーストラフィックを再開します。
+    HARPプロキシがビルトインプロキシを使用している場合、クライアントから新しい接続が要求されると、既存の接続を終了し、リードマスターへの新しい接続を作成します。
+  :original_contents: '3. HARP Proxy, if using pgbouncer, will `PAUSE` connections
+    to allow ongoing  transactions to complete. Once the lead master lease is claimed
+    by the promoted node, it reconfigures PgBouncer for the new connection target
+    and resumes database traffic. If HARP Proxy is using the builtin proxy, it terminates
+    existing  connections and creates new connections to the lead master as new connections
+    are requested from the client. '
+- :key: '86'
+  :contents: 'Execute a edb_tran_1 command like this:'
+  :translated_contents: 次のような`promote`コマンドを実行します。
+  :original_contents: 'Execute a `promote` command like this: '
+- :key: '87'
+  :contents: edb_notranlate_16
+  :translated_contents: edb_notranlate_16
+  :original_contents: " edb_notranlate_16  "
+- :key: '88'
+  :contents: Provide the edb_tran_1 option to forcibly set a node to lead master,  even
+    if it doesn't meet the criteria for becoming lead master. This  circumvents any
+    verification of CAMO status or replication lag and causes an  immediate transition
+    to the promoted node.  This is the only way to specify an exact node for promotion.
+  :translated_contents: リードマスターになるための基準を満たさない場合でも、ノードを強制的にリードマスターに設定する`--force`オプションを提供します。これにより、CAMOステータスまたはレプリケーションラグの検証が回避され、昇格したノードに即時に移行されます。これは、昇格するノードを正確に指定する唯一の方法です。
+  :original_contents: 'Provide the `--force` option to forcibly set a node to lead
+    master,  even if it doesn''t meet the criteria for becoming lead master. This  circumvents
+    any verification of CAMO status or replication lag and causes an  immediate transition
+    to the promoted node.  This is the only way to specify an exact node for promotion. '
+- :key: '89'
+  :contents: The node must be online and operational for this to succeed. Use this  option
+    with care.
+  :translated_contents: これを成功させるには、ノードがオンラインで動作している必要があります。このオプションは注意して使用してください。
+  :original_contents: 'The node must be online and operational for this to succeed.
+    Use this  option with care. '
+- :key: '90'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl set`"
+  :original_contents: "## `harpctl set` "
+- :key: '91'
+  :contents: 'Sets a specific attribute in the cluster to the supplied value. This
+    is used to  tweak configuration settings for a specific node, proxy, location,
+    or the  cluster rather than using edb_tran_1. You can use this for the following
+    object types:'
+  :translated_contents: クラスター内の特定の属性を指定された値に設定します。これは、 `apply`を使用するのではなく、特定のノード、プロキシ、場所、またはクラスターの構成設定を調整するために使用されます。これは、次のオブジェクトタイプに使用できます。
+  :original_contents: 'Sets a specific attribute in the cluster to the supplied value.
+    This is used to  tweak configuration settings for a specific node, proxy, location,
+    or the  cluster rather than using `apply`. You can use this for the following
+    object types: '
+- :key: '92'
+  :contents: "*  edb_tran_1 &mdash; Sets cluster-related attributes. "
+  :translated_contents: "* `cluster` &mdash;クラスター関連の属性を設定します。"
+  :original_contents: "* `cluster` &mdash; Sets cluster-related attributes. "
+- :key: '93'
+  :contents: "*  edb_tran_1 &mdash; Sets specific location attributes. "
+  :translated_contents: "* `location` &mdash;特定のロケーション属性を設定します。"
+  :original_contents: "* `location` &mdash; Sets specific location attributes. "
+- :key: '94'
+  :contents: "*  edb_tran_1 &mdash; Sets specific node attributes. "
+  :translated_contents: "* `node` &mdash;特定のノード属性を設定します。"
+  :original_contents: "* `node` &mdash; Sets specific node attributes. "
+- :key: '95'
+  :contents: "*  edb_tran_1 &mdash; Sets specific proxy attributes. "
+  :translated_contents: "* `proxy` &mdash;特定のプロキシ属性を設定します。"
+  :original_contents: "* `proxy` &mdash; Sets specific proxy attributes. "
+- :key: '96'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl set cluster`"
+  :original_contents: "### `harpctl set cluster` "
+- :key: '97'
+  :contents: Sets cluster-related attributes only.
+  :translated_contents: クラスター関連の属性のみを設定します。
+  :original_contents: 'Sets cluster-related attributes only. '
+- :key: '98'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '99'
+  :contents: edb_notranlate_17
+  :translated_contents: edb_notranlate_17
+  :original_contents: " edb_notranlate_17  "
+- :key: '100'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl set node`"
+  :original_contents: "### `harpctl set node` "
+- :key: '101'
+  :contents: Sets node-related attributes for the named node. Any options mentioned
+    in  edb_lk_asis_2  are valid here.
+  :translated_contents: 指定されたノードのノード関連の属性を設定します。ここでは、 edb_lk_asis_2 に記載されているオプションが有効です。
+  :original_contents: 'Sets node-related attributes for the named node. Any options
+    mentioned in  edb_lk_asis_2  are valid here. '
+- :key: '102'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '103'
+  :contents: edb_notranlate_18
+  :translated_contents: edb_notranlate_18
+  :original_contents: " edb_notranlate_18  "
+- :key: '104'
+  :contents: "### edb_tran_2"
+  :translated_contents: "### `harpctl set proxy`"
+  :original_contents: "### `harpctl set proxy` "
+- :key: '105'
+  :contents: Sets proxy-related attributes for the named proxy. Any options mentioned
+    in the edb_lk_asis_3   are valid here.   Properties set this way require a restart
+    of the proxy before the new value takes effect.
+  :translated_contents: 名前付けたプロキシのプロキシ関連の属性を設定します。 edb_lk_asis_3に記載されているオプションはここで有効です。この方法で設定されたプロパティでは、新しい値を有効にする前にプロキシを再起動する必要があります。
+  :original_contents: 'Sets proxy-related attributes for the named proxy. Any options
+    mentioned in the edb_lk_asis_3   are valid here.   Properties set this way require
+    a restart of the proxy before the new value takes effect. '
+- :key: '106'
+  :contents: 'Example:'
+  :translated_contents: 例：
+  :original_contents: 'Example: '
+- :key: '107'
+  :contents: edb_notranlate_19
+  :translated_contents: edb_notranlate_19
+  :original_contents: " edb_notranlate_19  "
+- :key: '108'
+  :contents: 'Use edb_tran_1 for cluster-wide proxy defaults:'
+  :translated_contents: クラスター全体のプロキシのデフォルトには `global` を使用します。
+  :original_contents: 'Use `global` for cluster-wide proxy defaults: '
+- :key: '109'
+  :contents: edb_notranlate_20
+  :translated_contents: edb_notranlate_20
+  :original_contents: " edb_notranlate_20  "
+- :key: '110'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl unfence`"
+  :original_contents: "## `harpctl unfence` "
+- :key: '111'
+  :contents: Removes the edb_tran_1 attribute from the local or specified node. This  removes
+    all previously applied cluster exclusions from the node so that it can  again
+    receive traffic or hold the lead master lease. Postgres is also started if it
+    isn't running.
+  :translated_contents: ローカルまたは指定されたノードから`fenced`属性を削除します。これにより、以前に適用されたすべてのクラスター除外がノードから削除され、再びトラフィックを受信したり、リードマスターリースを保持したりできます。
+    Postgresも実行されていない場合は起動されます。
+  :original_contents: 'Removes the `fenced` attribute from the local or specified
+    node. This  removes all previously applied cluster exclusions from the node so
+    that it can  again receive traffic or hold the lead master lease. Postgres is
+    also started if it isn''t running. '
+- :key: '112'
+  :contents: 'Execute an edb_tran_1 command like this:'
+  :translated_contents: 次のような`unfence`コマンドを実行します。
+  :original_contents: 'Execute an `unfence` command like this: '
+- :key: '113'
+  :contents: edb_notranlate_21
+  :translated_contents: edb_notranlate_21
+  :original_contents: " edb_notranlate_21  "
+- :key: '114'
+  :contents: The node-name is optional. If you omit it, edb_tran_1 uses the name of
+    the locally configured node.
+  :translated_contents: node-nameはオプションです。省略すると、 `harpctl` はローカルに構成されたノードの名前を使用します。
+  :original_contents: 'The node-name is optional. If you omit it, `harpctl` uses the
+    name of the locally configured node. '
+- :key: '115'
+  :contents: "## edb_tran_2"
+  :translated_contents: "## `harpctl unmanage`"
+  :original_contents: "## `harpctl unmanage` "
+- :key: '116'
+  :contents: Instructs all HARP Manager services in the cluster to remain running
+    but no  longer actively monitoring Postgres, or modify the contents of the consensus  layer.
+    This means that any ordinary failover event such as a node outage  doesn't result
+    in a leadership migration. This is intended for system or HARP  maintenance prior
+    to making changes to HARP software or other significant changes to the cluster.
+  :translated_contents: クラスター内のすべてのHARP Managerサービスを実行したままにしますが、Postgresをアクティブに監視したり、コンセンサスレイヤーのコンテンツを変更したりしません。これは、ノードの停止などの通常のフェイルオーバーイベントが原因でリーダーシップの移行が行われないことを意味します。これは、
+    HARPソフトウェアに変更を加える前の、またはクラスターにその他の重要な変更を加える前のシステムまたはHARPのメンテナンスを対象としています。
+  :original_contents: 'Instructs all HARP Manager services in the cluster to remain
+    running but no  longer actively monitoring Postgres, or modify the contents of
+    the consensus  layer. This means that any ordinary failover event such as a node
+    outage  doesn''t result in a leadership migration. This is intended for system
+    or HARP  maintenance prior to making changes to HARP software or other significant
+    changes to the cluster. '
+- :key: '117'
+  :contents: 'Execute an edb_tran_1 command like this:'
+  :translated_contents: 次のような`unmanage`コマンドを実行します。
+  :original_contents: 'Execute an `unmanage` command like this: '
+- :key: '118'
+  :contents: edb_notranlate_22
+  :translated_contents: edb_notranlate_22
+  :original_contents: " edb_notranlate_22  "
+- :key: '119'
+  :contents: edb_excla_notran_3 Currently you can enable or disable cluster management
+    at only the edb_tran_1 level. Later versions will also make it possible to do
+    this for individual nodes or proxies.
+  :translated_contents: edb_excla_notran_3 現在、クラスター管理は`cluster`レベルでのみ有効または無効にできます。後のバージョンでは、個々のノードまたはプロキシに対してこれを行うこともできます。
+  :original_contents: 'edb_excla_notran_3 Currently you can enable or disable cluster
+    management at only the `cluster` level. Later versions will also make it possible
+    to do this for individual nodes or proxies. '

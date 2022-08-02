@@ -1,0 +1,211 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# Consensus layer considerations`"
+  :original_contents: "`# Consensus layer considerations` "
+- :key: '2'
+  :contents: HARP is designed so that it can work with different implementations of  consensus
+    layer, also known as Distributed Control Systems (DCS).
+  :translated_contents: HARPは、分散制御システム（DCS）としても知られるコンセンサスレイヤーのさまざまな実装で動作するように設計されています。
+  :original_contents: 'HARP is designed so that it can work with different implementations
+    of  consensus layer, also known as Distributed Control Systems (DCS). '
+- :key: '3'
+  :contents: 'Currently the following DCS implementations are supported:'
+  :translated_contents: 現在、次のDCS実装がサポートされています。
+  :original_contents: 'Currently the following DCS implementations are supported: '
+- :key: '4'
+  :contents: " - etcd - BDR "
+  :translated_contents: " - etcd - BDR "
+  :original_contents: " - etcd - BDR "
+- :key: '5'
+  :contents: This information is specific to HARP's interaction with the  supported
+    DCS implementations.
+  :translated_contents: この情報は、サポートされているDCS実装とHARPの相互作用に固有です。
+  :original_contents: 'This information is specific to HARP''s interaction with the  supported
+    DCS implementations. '
+- :key: '6'
+  :contents: "## BDR driver compatibility"
+  :translated_contents: "## BDRドライバーの互換性"
+  :original_contents: "## BDR driver compatibility "
+- :key: '7'
+  :contents: The edb_tran_1 native consensus layer is available from BDR versions  edb_lk_asis_1   and
+    edb_lk_asis_2 .
+  :translated_contents: "`bdr`ネイティブコンセンサスレイヤーは、 BDRバージョン edb_lk_asis_1 および edb_lk_asis_2
+    から利用できます。"
+  :original_contents: 'The `bdr` native consensus layer is available from BDR versions  edb_lk_asis_1   and
+    edb_lk_asis_2 . '
+- :key: '8'
+  :contents: For the purpose of maintaining a voting quorum, BDR Logical Standby  nodes
+    don't participate in consensus communications in a BDR cluster. Don't count these
+    in the total node list to fulfill DCS quorum requirements.
+  :translated_contents: 投票クォーラムを維持するために、 BDR論理スタンバイノードはBDRクラスターでのコンセンサス通信に参加しません。
+    DCSクォーラム要件を満たすために、これらを合計ノードリストでカウントしないでください。
+  :original_contents: 'For the purpose of maintaining a voting quorum, BDR Logical
+    Standby  nodes don''t participate in consensus communications in a BDR cluster.
+    Don''t count these in the total node list to fulfill DCS quorum requirements. '
+- :key: '9'
+  :contents: "## Maintaining quorum"
+  :translated_contents: "## クォーラムの維持"
+  :original_contents: "## Maintaining quorum "
+- :key: '10'
+  :contents: Clusters of any architecture require at least n/2 + 1 nodes to maintain  consensus
+    via a voting quorum. Thus a three-node cluster can tolerate the outage of  a single
+    node, a five-node cluster can tolerate a two-node outage, and so on. If  consensus
+    is ever lost, HARP becomes inoperable because the DCS prevents it  from deterministically
+    identifying the node that is the lead master in a  particular location.
+  :translated_contents: どのアーキテクチャのクラスターでも、投票クォーラムを介してコンセンサスを維持するには、少なくともn/2 + 1個のノードが必要です。したがって、3ノードのクラスターは単一ノードの停止を許容でき、5ノードのクラスターは2ノードの停止を許容できます。コンセンサスが失われると、DCSが特定の場所のリードマスターであるノードを決定的に識別できないため、
+    HARPは動作不能になります。
+  :original_contents: 'Clusters of any architecture require at least n/2 + 1 nodes
+    to maintain  consensus via a voting quorum. Thus a three-node cluster can tolerate
+    the outage of  a single node, a five-node cluster can tolerate a two-node outage,
+    and so on. If  consensus is ever lost, HARP becomes inoperable because the DCS
+    prevents it  from deterministically identifying the node that is the lead master
+    in a  particular location. '
+- :key: '11'
+  :contents: As a result, whichever DCS is chosen, more than half of the nodes must
+    always  be available _cluster-wide_. This can become a non-trivial element when  distributing
+    DCS nodes among two or more data centers. A network partition  prevents quorum
+    in any location that can't maintain a voting majority, and thus  HARP stops working.
+  :translated_contents: その結果、どちらのDCSを選択しても、ノードの半分以上が常に_クラスター全体で_使用可能である必要があります。これは、DCSノードを2つ以上のデータセンターに分散する場合、重要な要素になる可能性があります。ネットワークパーティションは、投票過半数を維持できない場所でクォーラムを防止するため、
+    HARPは動作を停止します。
+  :original_contents: 'As a result, whichever DCS is chosen, more than half of the
+    nodes must always  be available _cluster-wide_. This can become a non-trivial
+    element when  distributing DCS nodes among two or more data centers. A network
+    partition  prevents quorum in any location that can''t maintain a voting majority,
+    and thus  HARP stops working. '
+- :key: '12'
+  :contents: Thus an odd-number of nodes (with a minimum of three) is crucial when
+    building the  consensus layer. An ideal case distributes nodes across a minimum
+    of  three independent locations to prevent a single network partition from  disrupting
+    consensus.
+  :translated_contents: したがって、コンセンサスレイヤーを構築するときは、奇数のノード（最小3つ）が重要です。理想的なケースは、ノードを少なくとも3つの独立した場所に分散して、単一のネットワークパーティションがコンセンサスを混乱させないようにすることです。
+  :original_contents: 'Thus an odd-number of nodes (with a minimum of three) is crucial
+    when building the  consensus layer. An ideal case distributes nodes across a minimum
+    of  three independent locations to prevent a single network partition from  disrupting
+    consensus. '
+- :key: '13'
+  :contents: One example configuration is to designate two DCS nodes in two data centers  coinciding
+    with the primary BDR nodes, and a fifth DCS node (such as a BDR  witness) elsewhere.
+    Using such a design, a network partition between the two  BDR data centers doesn't
+    disrupt consensus thanks to the independently located node.
+  :translated_contents: 1つの構成例は、2つのデータセンターの2つのDCSノードをプライマリBDRノードと指定し、5番目のDCSノード（ BDRなど）を指定することです。このような設計を使用すると、2つのBDRデータセンター間のネットワークパーティションは、独立して配置されたノードのおかげでコンセンサスを混乱させません。
+  :original_contents: 'One example configuration is to designate two DCS nodes in
+    two data centers  coinciding with the primary BDR nodes, and a fifth DCS node
+    (such as a BDR  witness) elsewhere. Using such a design, a network partition between
+    the two  BDR data centers doesn''t disrupt consensus thanks to the independently
+    located node. '
+- :key: '14'
+  :contents: "### Multi-consensus variant"
+  :translated_contents: "### マルチコンセンサスバリアント"
+  :original_contents: "### Multi-consensus variant "
+- :key: '15'
+  :contents: HARP assumes one lead master per configured location. Normally each  location
+    is specified in HARP using the edb_tran_1 configuration setting.  By creating
+    a separate DCS cluster per location, you can emulate this behavior independently
+    of HARP.
+  :translated_contents: HARPは、設定されたロケーションごとに1つのリードマスターを想定しています。通常、各場所は `location`
+    構成設定を使用してHARPで指定されます。ロケーションごとに個別のDCSクラスターを作成することにより、 HARPとは無関係にこの動作をエミュレートできます。
+  :original_contents: 'HARP assumes one lead master per configured location. Normally
+    each  location is specified in HARP using the `location` configuration setting.  By
+    creating a separate DCS cluster per location, you can emulate this behavior independently
+    of HARP. '
+- :key: '16'
+  :contents: To accomplish this, configure HARP in edb_tran_1 to use a different DCS
+    connection target per desired Location.
+  :translated_contents: これを行うには、目的の場所ごとに異なるDCS接続ターゲットを使用するように`config.yml`でHARPを構成します。
+  :original_contents: 'To accomplish this, configure HARP in `config.yml` to use a
+    different DCS connection target per desired Location. '
+- :key: '17'
+  :contents: 'HARP nodes in DC-A use something like this:'
+  :translated_contents: DC-AのHARPノードは次のようなものを使用します。
+  :original_contents: 'HARP nodes in DC-A use something like this: '
+- :key: '18'
+  :contents: edb_notranlate_0
+  :translated_contents: edb_notranlate_0
+  :original_contents: " edb_notranlate_0  "
+- :key: '19'
+  :contents: 'While DC-B uses different hostnames corresponding to nodes in its  canonical
+    location:'
+  :translated_contents: DC-Bは、正規の場所にあるノードに対応する異なるホスト名を使用しますが：
+  :original_contents: 'While DC-B uses different hostnames corresponding to nodes
+    in its  canonical location: '
+- :key: '20'
+  :contents: edb_notranlate_1
+  :translated_contents: edb_notranlate_1
+  :original_contents: " edb_notranlate_1  "
+- :key: '21'
+  :contents: There's no DCS communication between different data centers in this design,  and
+    thus a network partition between them doesn't affect HARP operation. A  consequence
+    of this is that HARP is completely unaware of nodes in the other  location, and
+    each location operates essentially as a separate HARP cluster.
+  :translated_contents: このデザインには異なるデータセンター間のDCS通信がないため、それらの間のネットワークパーティションはHARPオペレーションに影響しません。この結果、
+    HARPは他の場所のノードを完全に認識せず、各場所は本質的に別個のHARPクラスターとして動作します。
+  :original_contents: 'There''s no DCS communication between different data centers
+    in this design,  and thus a network partition between them doesn''t affect HARP
+    operation. A  consequence of this is that HARP is completely unaware of nodes
+    in the other  location, and each location operates essentially as a separate HARP
+    cluster. '
+- :key: '22'
+  :contents: This isn't possible when using BDR as the DCS, as BDR maintains a consensus  layer
+    across all participant nodes.
+  :translated_contents: BDRはDCSとして使用する場合、 BDRがすべての参加者ノードにわたってコンセンサスレイヤーを維持するため、これは不可能です。
+  :original_contents: 'This isn''t possible when using BDR as the DCS, as BDR maintains
+    a consensus  layer across all participant nodes.  '
+- :key: '23'
+  :contents: A possible drawback to this approach is that edb_tran_3 can't interact  with
+    nodes outside of the current location. It's impossible to obtain  node information,
+    get or set the lead master, or perform any other operation that  targets the other
+    location. Essentially this organization renders the  edb_tran_2 parameter to edb_tran_3
+    unusable.
+  :translated_contents: このアプローチの潜在的な欠点は、 `harpctl` が現在の場所の外部のノードと対話できないことです。ノード情報の取得、リードマスターの取得または設定、または他の場所をターゲットとするその他の操作を実行することはできません。基本的に、この組織は`harpctl`への`--location`パラメーターを使用不可にします。
+  :original_contents: 'A possible drawback to this approach is that `harpctl` can''t
+    interact  with nodes outside of the current location. It''s impossible to obtain  node
+    information, get or set the lead master, or perform any other operation that  targets
+    the other location. Essentially this organization renders the  `--location` parameter
+    to `harpctl` unusable. '
+- :key: '24'
+  :contents: "### TPAexec and consensus"
+  :translated_contents: "### TPAexecとコンセンサス"
+  :original_contents: "### TPAexec and consensus "
+- :key: '25'
+  :contents: These considerations are integrated into TPAexec as well. When deploying
+    a cluster using etcd, it constructs a separate DCS cluster per location to facilitate
+    high availability in favor of strict consistency.
+  :translated_contents: これらの考慮事項もTPAexecに統合されています。 etcdを使用してクラスターをデプロイすると、ロケーションごとに個別のDCSクラスターが構築され、厳密な一貫性を維持しながら高可用性が促進されます。
+  :original_contents: 'These considerations are integrated into TPAexec as well. When
+    deploying a cluster using etcd, it constructs a separate DCS cluster per location
+    to facilitate high availability in favor of strict consistency. '
+- :key: '26'
+  :contents: 'Thus this configuration example groups any DCS nodes assigned to the
+    edb_tran_1 location together, and the  edb_tran_2 location is a separate cluster:'
+  :translated_contents: したがって、この構成例では、 `first`の場所に割り当てられたDCSノードをグループ化し、 `second`の場所は別のクラスターです。
+  :original_contents: 'Thus this configuration example groups any DCS nodes assigned
+    to the `first` location together, and the  `second` location is a separate cluster: '
+- :key: '27'
+  :contents: edb_notranlate_2
+  :translated_contents: edb_notranlate_2
+  :original_contents: " edb_notranlate_2  "
+- :key: '28'
+  :contents: To override this behavior,  configure the edb_tran_1 implicitly to force
+    a particular grouping.
+  :translated_contents: この動作をオーバーライドするには、特定のグループ化を強制するように`harp_location`を暗黙的に構成します。
+  :original_contents: 'To override this behavior,  configure the `harp_location` implicitly
+    to force a particular grouping. '
+- :key: '29'
+  :contents: 'Thus this example returns all etcd nodes into a single cohesive DCS
+    layer:'
+  :translated_contents: したがって、この例では、すべてのetcdノードを単一の凝集DCSレイヤーに返します。
+  :original_contents: 'Thus this example returns all etcd nodes into a single cohesive
+    DCS layer: '
+- :key: '30'
+  :contents: edb_notranlate_3
+  :translated_contents: edb_notranlate_3
+  :original_contents: " edb_notranlate_3  "
+- :key: '31'
+  :contents: The edb_tran_1 override might also be necessary to favor specific node  groupings
+    when using cloud providers such as Amazon that favor availability zones in regions
+    over traditional data centers.
+  :translated_contents: "`harp_location`オーバーライドは、従来のデータセンターよりもリージョンのアベイラビリティーゾーンを優先するAmazonなどのクラウドプロバイダーを使用する場合、特定のノードグループを優先するためにも必要になる場合があります。"
+  :original_contents: 'The `harp_location` override might also be necessary to favor
+    specific node  groupings when using cloud providers such as Amazon that favor
+    availability zones in regions over traditional data centers. '

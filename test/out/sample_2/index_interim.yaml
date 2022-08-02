@@ -1,0 +1,38 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# High Availability Routing for Postgres (HARP)`"
+  :original_contents: "`# High Availability Routing for Postgres (HARP)` "
+- :key: '2'
+  :contents: High Availability Routing for Postgres (HARP) is a cluster-management
+    tool for  edb_lk_asis_1  clusters. The core design of  the tool is to route all
+    application traffic in a single data center or  region to only one node at a time.
+    This node, designated the lead master, acts  as the principle write target to
+    reduce the potential for data conflicts.
+  :translated_contents: Postgresの高可用性ルーティング（HARP）は、 edb_lk_asis_1 クラスター用のクラスター管理ツールです。このツールのコアデザインは、単一のデータセンターまたはリージョン内のすべてのアプリケーショントラフィックを一度に1つのノードにのみルーティングすることです。リードマスターと指定されたこのノードは、データ競合の可能性を減らすための主な書き込みターゲットとして機能します。
+  :original_contents: 'High Availability Routing for Postgres (HARP) is a cluster-management
+    tool for  edb_lk_asis_1  clusters. The core design of  the tool is to route all
+    application traffic in a single data center or  region to only one node at a time.
+    This node, designated the lead master, acts  as the principle write target to
+    reduce the potential for data conflicts. '
+- :key: '3'
+  :contents: HARP leverages a distributed consensus model to determine availability
+    of the  BDR nodes in the cluster. On failure or unavailability of the lead master,
+    HARP  elects a new lead master and redirects application traffic.
+  :translated_contents: HARPは分散コンセンサスモデルを活用して、クラスター内のBDRノードの可用性を判断します。リードマスターに障害が発生するか使用できない場合、
+    HARPは新しいリードマスターを選択し、アプリケーショントラフィックをリダイレクトします。
+  :original_contents: 'HARP leverages a distributed consensus model to determine availability
+    of the  BDR nodes in the cluster. On failure or unavailability of the lead master,
+    HARP  elects a new lead master and redirects application traffic. '
+- :key: '4'
+  :contents: Together with the core capabilities of BDR, this mechanism of routing  application
+    traffic to the lead master node enables fast failover and  switchover without
+    risk of data loss.
+  :translated_contents: BDRのコア機能と合わせて、アプリケーショントラフィックをリードマスターノードにルーティングするこのメカニズムにより、データ損失のリスクなしで高速なフェイルオーバーとスイッチオーバーが可能になります。
+  :original_contents: 'Together with the core capabilities of BDR, this mechanism
+    of routing  application traffic to the lead master node enables fast failover
+    and  switchover without risk of data loss. '
+- :key: '5'
+  :contents: HARP requires BDR versions 3.6 and later.
+  :translated_contents: HARPにはBDRバージョン3.6以降が必要です。
+  :original_contents: 'HARP requires BDR versions 3.6 and later. '

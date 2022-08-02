@@ -1,0 +1,114 @@
+---
+- :key: '1'
+  :contents: "`# Security and roles`"
+  :translated_contents: ''
+  :original_contents: "`# Security and roles` "
+- :key: '2'
+  :contents: Beyond basic package installation and configuration, HARP requires Postgres
+    permissions to operate. These allow it to gather information about Postgres or
+    BDR as needed to maintain node status in the consensus layer.
+  :translated_contents: ''
+  :original_contents: 'Beyond basic package installation and configuration, HARP requires
+    Postgres permissions to operate. These allow it to gather information about Postgres
+    or BDR as needed to maintain node status in the consensus layer. '
+- :key: '3'
+  :contents: "## Postgres permissions"
+  :translated_contents: ''
+  :original_contents: "## Postgres permissions "
+- :key: '4'
+  :contents: 'Create the role specified in the `node.dsn` parameter in one of the
+    following ways:'
+  :translated_contents: ''
+  :original_contents: 'Create the role specified in the `node.dsn` parameter in one
+    of the following ways: '
+- :key: '5'
+  :contents: "*  `CREATE USER ...` "
+  :translated_contents: ''
+  :original_contents: "* `CREATE USER ...` "
+- :key: '6'
+  :contents: "*  `CREATE ROLE ... WITH LOGIN` "
+  :translated_contents: ''
+  :original_contents: "* `CREATE ROLE ... WITH LOGIN` "
+- :key: '7'
+  :contents: This syntax ensures the role can log into the database to gather diagnostic
+    information.
+  :translated_contents: ''
+  :original_contents: 'This syntax ensures the role can log into the database to gather
+    diagnostic information. '
+- :key: '8'
+  :contents: 'Similarly, an entry must exist in `pg_hba.conf` for this role. You can
+    do this in many ways. As an example, consider a VPN subnet where all database
+    hosts are located somewhere in `10.10.*`. In such a case, the easiest approach
+    is to add a specific line:'
+  :translated_contents: ''
+  :original_contents: 'Similarly, an entry must exist in `pg_hba.conf` for this role.
+    You can do this in many ways. As an example, consider a VPN subnet where all database
+    hosts are located somewhere in `10.10.*`. In such a case, the easiest approach
+    is to add a specific line: '
+- :key: '9'
+  :contents: edb_notranlate_0
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_0  "
+- :key: '10'
+  :contents: edb_excla_notran_1 In this case we've used the more modern `scram-sha-256`
+    authentication rather than `md5`, which is now deprecated. We've also elected
+    to require SSL authentication by specifying `hostssl`.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_1 In this case we''ve used the more modern
+    `scram-sha-256` authentication rather than `md5`, which is now deprecated. We''ve
+    also elected to require SSL authentication by specifying `hostssl`. '
+- :key: '11'
+  :contents: "## BDR permissions"
+  :translated_contents: ''
+  :original_contents: "## BDR permissions "
+- :key: '12'
+  :contents: 'BDR nodes have metadata and views that are visible only when certain
+    roles are granted to the HARP-enabled user. In this case, the HARP user requires
+    the following:'
+  :translated_contents: ''
+  :original_contents: 'BDR nodes have metadata and views that are visible only when
+    certain roles are granted to the HARP-enabled user. In this case, the HARP user
+    requires the following: '
+- :key: '13'
+  :contents: edb_notranlate_1
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_1  "
+- :key: '14'
+  :contents: The `bdr_monitor` BDR role is meant for status monitoring tools to maintain
+    ongoing information on cluster operation, thus it is well-suited to HARP.
+  :translated_contents: ''
+  :original_contents: 'The `bdr_monitor` BDR role is meant for status monitoring tools
+    to maintain ongoing information on cluster operation, thus it is well-suited to
+    HARP. '
+- :key: '15'
+  :contents: "## BDR consensus permissions"
+  :translated_contents: ''
+  :original_contents: "## BDR consensus permissions "
+- :key: '16'
+  :contents: 'When the `dcs.driver` configuration parameter is set to `bdr`, HARP  uses
+    BDR as the consensus layer. As such, it requires access to API  methods that are
+    currently available only to the `bdr_superuser` role. This  means the HARP-enabled
+    user requires the following:'
+  :translated_contents: ''
+  :original_contents: 'When the `dcs.driver` configuration parameter is set to `bdr`,
+    HARP  uses BDR as the consensus layer. As such, it requires access to API  methods
+    that are currently available only to the `bdr_superuser` role. This  means the
+    HARP-enabled user requires the following: '
+- :key: '17'
+  :contents: edb_notranlate_2
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_2  "
+- :key: '18'
+  :contents: Currently access to the BDR consensus model requires superuser equivalent
+    permission.
+  :translated_contents: ''
+  :original_contents: 'Currently access to the BDR consensus model requires superuser
+    equivalent permission. '
+- :key: '19'
+  :contents: edb_excla_notran_2 BDR superusers *are not* Postgres superusers. The
+    `bdr_superuser` role is merely granted elevated privileges in BDR, such as access
+    to restricted functions, tables, views, and other objects.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_2 BDR superusers *are not* Postgres superusers.
+    The `bdr_superuser` role is merely granted elevated privileges in BDR, such as
+    access to restricted functions, tables, views, and other objects. '

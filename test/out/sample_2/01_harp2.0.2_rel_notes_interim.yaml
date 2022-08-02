@@ -1,0 +1,15 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# Version 2.0.2`"
+  :original_contents: "`# Version 2.0.2` "
+- :key: '2'
+  :contents: This is a patch release of HARP 2 that includes fixes for issues identified
+    in previous versions.
+  :translated_contents: これは、以前のバージョンで特定された問題の修正を含むHARP 2のパッチリリースです。
+  :original_contents: 'This is a patch release of HARP 2 that includes fixes for issues
+    identified in previous versions. '
+- :key: '3'
+  :contents: edb_tabl_notran_1
+  :translated_contents: edb_tabl_notran_1
+  :original_contents: " edb_tabl_notran_1  "

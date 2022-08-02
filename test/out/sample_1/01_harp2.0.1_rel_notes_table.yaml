@@ -1,0 +1,27 @@
+---
+- :id: '1'
+  :table_hash: &1
+  - Type: "----"
+    Description: "------------"
+  - Type: Enhancement
+    Description: etcdのようなDCSに依存して異なるロケーションに個別にセットアップするのではなく、ロケーションごとにリーダーを選択するためのサポート。これでも、ロケーションの損失を生き残るために大部分のノードが必要になるため、ロケーションとデータベースノードの両方を奇数にすることをお勧めします。
+  - Type: Enhancement
+    Description: BDR DCSは、ポーリングノードではなく、コンセンサスからのプッシュ通知を使用するようになりました。この変更により、新しいリーダーの選択にかかる時間が短縮され、
+      HARPがBDR DCSで実行する負荷が削減されます。
+  - Type: Enhancement
+    Description: TPAは各HARPプロキシを1つずつ再起動し、戻ってくるまで待機して、ソフトウェアのアップグレード中にアプリケーションで発生したダウンタイムを削減します。
+  - Type: Enhancement
+    Description: PGBouncerをHARPプロキシに直接埋め込むサポートは非推奨になり、 HARPの次のメジャーリリースで削除されます。 PGBouncerをHARPHARPをポイントするようにTPAを構成できるようになりました。
+  - Type: Bug Fix
+    Description: "`harpctl promote <node_name>`は、指定されたノードとは異なるノードを昇格させることがありました。これは修正されました。
+      [サポートチケット＃75406]"
+  - Type: Bug Fix
+    Description: 分散コンセンサスサービスとしてBDRを使用すると、フェンシングが失敗することがありました。これは修正されました。
+  - Type: Bug Fix
+    Description: "`harpctl apply`は、クラスターが確立された後にリーダーのルーティングをオフにしなくなりました。 [サポートチケット＃80790]"
+  - Type: Bug Fix
+    Description: 障害が発生したデータベースを起動できない場合に、Harp-managerが終了しなくなりました。 Harp-managerは、ランダムに増加する期間で再試行し続けます。
+      [サポートチケット＃78516]
+  - Type: Bug Fix
+    Description: 内部pgbouncerプロキシ実装でメモリリークが発生しました。これは修正されました。
+  :translated_text: *1

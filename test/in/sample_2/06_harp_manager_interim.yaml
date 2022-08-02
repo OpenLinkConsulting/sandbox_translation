@@ -1,0 +1,217 @@
+---
+- :key: '1'
+  :contents: "`# HARP Manager`"
+  :translated_contents: ''
+  :original_contents: "`# HARP Manager` "
+- :key: '2'
+  :contents: HARP Manager is a daemon that interacts with the local PostgreSQL/BDR
+    node and stores information about its state in the consensus layer. Manager determines
+    the node that currently holds leader status for a respective location and enforces
+    configuration (lag, CAMO lag, etc.) constraints to prevent ineligible nodes from
+    leader consideration.
+  :translated_contents: ''
+  :original_contents: 'HARP Manager is a daemon that interacts with the local PostgreSQL/BDR
+    node and stores information about its state in the consensus layer. Manager determines
+    the node that currently holds leader status for a respective location and enforces
+    configuration (lag, CAMO lag, etc.) constraints to prevent ineligible nodes from
+    leader consideration. '
+- :key: '3'
+  :contents: Every Postgres node in the cluster must have an associated HARP Manager.  Other
+    nodes can exist, but they can't to participate as lead or  shadow master roles
+    or any other functionality that requires a HARP Manager.
+  :translated_contents: ''
+  :original_contents: 'Every Postgres node in the cluster must have an associated
+    HARP Manager.  Other nodes can exist, but they can''t to participate as lead or  shadow
+    master roles or any other functionality that requires a HARP Manager. '
+- :key: '4'
+  :contents: edb_excla_notran_1 HARP Manager expects the be used to start and stop
+    the database.  Stopping HARP Manager will stop the database.  Starting HARP Manager
+    will start the database if it  isn't already started.  If another method is used
+    to stop the database then  HARP Manager will try and restart it.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_1 HARP Manager expects the be used to start
+    and stop the database.  Stopping HARP Manager will stop the database.  Starting
+    HARP Manager will start the database if it  isn''t already started.  If another
+    method is used to stop the database then  HARP Manager will try and restart it. '
+- :key: '5'
+  :contents: "## How it works"
+  :translated_contents: ''
+  :original_contents: "## How it works "
+- :key: '6'
+  :contents: 'Upon starting, HARP Manager uses `pg_ctl` to start Postgres if it isn''t
+    already running. After this, it periodically checks the server as defined by the
+    `node.lease_refresh_interval` setting. HARP Manager collects various bits of data
+    about Postgres including:'
+  :translated_contents: ''
+  :original_contents: 'Upon starting, HARP Manager uses `pg_ctl` to start Postgres
+    if it isn''t already running. After this, it periodically checks the server as
+    defined by the `node.lease_refresh_interval` setting. HARP Manager collects various
+    bits of data about Postgres including: '
+- :key: '7'
+  :contents: "*  The node's current LSN. "
+  :translated_contents: ''
+  :original_contents: "* The node's current LSN. "
+- :key: '8'
+  :contents: "*  If Postgres is running and accepting connections. This particular
+    data point is considered a lease that must be periodically renewed. If it expires,
+    HARP Proxy removes the node from any existing routing. "
+  :translated_contents: ''
+  :original_contents: "* If Postgres is running and accepting connections. This particular
+    data point is considered a lease that must be periodically renewed. If it expires,
+    HARP Proxy removes the node from any existing routing. "
+- :key: '9'
+  :contents: "*  The current apply LSN position for all upstream BDR peer nodes. "
+  :translated_contents: ''
+  :original_contents: "* The current apply LSN position for all upstream BDR peer
+    nodes. "
+- :key: '10'
+  :contents: "*  If CAMO is enabled: - Name of the CAMO partner - Peer CAMO state
+    (`is_ready`) - CAMO queue received and applied LSN positions "
+  :translated_contents: ''
+  :original_contents: "* If CAMO is enabled: - Name of the CAMO partner - Peer CAMO
+    state (`is_ready`) - CAMO queue received and applied LSN positions "
+- :key: '11'
+  :contents: "*  Node type, such as whether the node is BDR or regular Postgres. "
+  :translated_contents: ''
+  :original_contents: "* Node type, such as whether the node is BDR or regular Postgres. "
+- :key: '12'
+  :contents: "*  The node's current role, such as a read/write, physical streaming
+    replica,  logical standby, and so on. "
+  :translated_contents: ''
+  :original_contents: "* The node's current role, such as a read/write, physical streaming
+    replica,  logical standby, and so on. "
+- :key: '13'
+  :contents: "*  BDR node state, which is `ACTIVE` except in limited cases. "
+  :translated_contents: ''
+  :original_contents: "* BDR node state, which is `ACTIVE` except in limited cases. "
+- :key: '14'
+  :contents: "*  BDR Node ID for other metadata gathering. "
+  :translated_contents: ''
+  :original_contents: "* BDR Node ID for other metadata gathering. "
+- :key: '15'
+  :contents: "*  Other tracking values. "
+  :translated_contents: ''
+  :original_contents: "* Other tracking values. "
+- :key: '16'
+  :contents: edb_excla_notran_2 When naming BDR nodes in HARP, the BDR node name must
+    match the node name represented in the `node.name` configuration attribute. This
+    occurs in the bootstrap process.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_2 When naming BDR nodes in HARP, the BDR node
+    name must match the node name represented in the `node.name` configuration attribute.
+    This occurs in the bootstrap process. '
+- :key: '17'
+  :contents: The data collected here is fully available to other HARP Manager processes
+    and is used to evaluate lag, partner readiness, and other criteria that direct
+    switchover and failover behavior.
+  :translated_contents: ''
+  :original_contents: 'The data collected here is fully available to other HARP Manager
+    processes and is used to evaluate lag, partner readiness, and other criteria that
+    direct switchover and failover behavior. '
+- :key: '18'
+  :contents: After updating the node metadata, HARP Manager either refreshes the lead  master
+    lease if it's already held by the local node or seeks to obtain the  lease if
+    it's expired. Since the current state of all nodes is known to all other nodes,
+    the node that was the previous lead master is given automatic priority ranking
+    if present. If not, all other nodes list themselves by LSN lag, node priority,
+    and other criteria, and the most qualified node seizes the lead master lease.
+  :translated_contents: ''
+  :original_contents: 'After updating the node metadata, HARP Manager either refreshes
+    the lead  master lease if it''s already held by the local node or seeks to obtain
+    the  lease if it''s expired. Since the current state of all nodes is known to
+    all other nodes, the node that was the previous lead master is given automatic
+    priority ranking if present. If not, all other nodes list themselves by LSN lag,
+    node priority, and other criteria, and the most qualified node seizes the lead
+    master lease. '
+- :key: '19'
+  :contents: This procedure happens for every defined location where nodes are present.
+    Thus  for locations DC1 and DC2, there is a lead master node in each, with a  separate
+    lease and election process for both.
+  :translated_contents: ''
+  :original_contents: 'This procedure happens for every defined location where nodes
+    are present. Thus  for locations DC1 and DC2, there is a lead master node in each,
+    with a  separate lease and election process for both. '
+- :key: '20'
+  :contents: HARP Manager repeats these Postgres status checks, lease renewals, and  elections
+    repeatedly to ensure the cluster always has a lead master target for  connections
+    from HARP Proxy.
+  :translated_contents: ''
+  :original_contents: 'HARP Manager repeats these Postgres status checks, lease renewals,
+    and  elections repeatedly to ensure the cluster always has a lead master target
+    for  connections from HARP Proxy.  '
+- :key: '21'
+  :contents: "## Configuration"
+  :translated_contents: ''
+  :original_contents: "## Configuration "
+- :key: '22'
+  :contents: 'HARP Manager expects the `dcs`, `cluster`, and `manager` configuration
+    stanzas.  The following is a functional example:'
+  :translated_contents: ''
+  :original_contents: 'HARP Manager expects the `dcs`, `cluster`, and `manager` configuration
+    stanzas.  The following is a functional example: '
+- :key: '23'
+  :contents: edb_notranlate_0
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_0  "
+- :key: '24'
+  :contents: 'You can apply changes to the configuration file (default: `/etc/harp/config.yml`)
+    by issuing `SIGHUP` to the running instance or by calling a service-level reload.'
+  :translated_contents: ''
+  :original_contents: 'You can apply changes to the configuration file (default: `/etc/harp/config.yml`)
+    by issuing `SIGHUP` to the running instance or by calling a service-level reload. '
+- :key: '25'
+  :contents: See edb_lk_asis_1  for further details.
+  :translated_contents: ''
+  :original_contents: 'See edb_lk_asis_1  for further details. '
+- :key: '26'
+  :contents: "## Usage"
+  :translated_contents: ''
+  :original_contents: "## Usage "
+- :key: '27'
+  :contents: 'This is the basic usage for HARP Manager:'
+  :translated_contents: ''
+  :original_contents: 'This is the basic usage for HARP Manager: '
+- :key: '28'
+  :contents: edb_notranlate_1
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_1  "
+- :key: '29'
+  :contents: There are no arguments to launch `harp-manager` as a forked daemon.  This
+    software is designed to be launched through systemd or in a container  as a top-level
+    process. This also means output is directed to STDOUT and STDERR for capture and
+    access through journald or an attached container terminal.
+  :translated_contents: ''
+  :original_contents: 'There are no arguments to launch `harp-manager` as a forked
+    daemon.  This software is designed to be launched through systemd or in a container  as
+    a top-level process. This also means output is directed to STDOUT and STDERR for
+    capture and access through journald or an attached container terminal. '
+- :key: '30'
+  :contents: "## Disabling and reenabling HARP Manager control of Postgres"
+  :translated_contents: ''
+  :original_contents: "## Disabling and reenabling HARP Manager control of Postgres "
+- :key: '31'
+  :contents: You can temporarily pause HARP Manager control of Postgres. This  results
+    in a state where the daemon continues running but doesn't perform any  operations
+    that can affect existing behavior of the cluster. Reenabling  management causes
+    it to resume operation.
+  :translated_contents: ''
+  :original_contents: 'You can temporarily pause HARP Manager control of Postgres.
+    This  results in a state where the daemon continues running but doesn''t perform
+    any  operations that can affect existing behavior of the cluster. Reenabling  management
+    causes it to resume operation. '
+- :key: '32'
+  :contents: 'An example of temporarily disabling node management is:'
+  :translated_contents: ''
+  :original_contents: 'An example of temporarily disabling node management is: '
+- :key: '33'
+  :contents: edb_notranlate_2
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_2  "
+- :key: '34'
+  :contents: See edb_lk_asis_2  for more details.
+  :translated_contents: ''
+  :original_contents: 'See edb_lk_asis_2  for more details. '
+- :key: '35'
+  :contents: Node management by HARP Manager is enabled by default.
+  :translated_contents: ''
+  :original_contents: 'Node management by HARP Manager is enabled by default. '

@@ -1,0 +1,37 @@
+---
+- :key: '1'
+  :contents: "`# High Availability Routing for Postgres (HARP)`"
+  :translated_contents: ''
+  :original_contents: "`# High Availability Routing for Postgres (HARP)` "
+- :key: '2'
+  :contents: High Availability Routing for Postgres (HARP) is a cluster-management
+    tool for  edb_lk_asis_1  clusters. The core design of  the tool is to route all
+    application traffic in a single data center or  region to only one node at a time.
+    This node, designated the lead master, acts  as the principle write target to
+    reduce the potential for data conflicts.
+  :translated_contents: ''
+  :original_contents: 'High Availability Routing for Postgres (HARP) is a cluster-management
+    tool for  edb_lk_asis_1  clusters. The core design of  the tool is to route all
+    application traffic in a single data center or  region to only one node at a time.
+    This node, designated the lead master, acts  as the principle write target to
+    reduce the potential for data conflicts. '
+- :key: '3'
+  :contents: HARP leverages a distributed consensus model to determine availability
+    of the  BDR nodes in the cluster. On failure or unavailability of the lead master,
+    HARP  elects a new lead master and redirects application traffic.
+  :translated_contents: ''
+  :original_contents: 'HARP leverages a distributed consensus model to determine availability
+    of the  BDR nodes in the cluster. On failure or unavailability of the lead master,
+    HARP  elects a new lead master and redirects application traffic. '
+- :key: '4'
+  :contents: Together with the core capabilities of BDR, this mechanism of routing  application
+    traffic to the lead master node enables fast failover and  switchover without
+    risk of data loss.
+  :translated_contents: ''
+  :original_contents: 'Together with the core capabilities of BDR, this mechanism
+    of routing  application traffic to the lead master node enables fast failover
+    and  switchover without risk of data loss. '
+- :key: '5'
+  :contents: HARP requires BDR versions 3.6 and later.
+  :translated_contents: ''
+  :original_contents: 'HARP requires BDR versions 3.6 and later. '

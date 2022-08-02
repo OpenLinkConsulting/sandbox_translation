@@ -1,0 +1,194 @@
+---
+- :key: '1'
+  :contents: "`# Installation`"
+  :translated_contents: ''
+  :original_contents: "`# Installation` "
+- :key: '2'
+  :contents: 'A standard installation of HARP includes two system services:'
+  :translated_contents: ''
+  :original_contents: 'A standard installation of HARP includes two system services: '
+- :key: '3'
+  :contents: "*  HARP Manager (`harp-manager`) on the node being managed "
+  :translated_contents: ''
+  :original_contents: "* HARP Manager (`harp-manager`) on the node being managed "
+- :key: '4'
+  :contents: "*  HARP Proxy (`harp-proxy`) elsewhere "
+  :translated_contents: ''
+  :original_contents: "* HARP Proxy (`harp-proxy`) elsewhere "
+- :key: '5'
+  :contents: There are two ways to install and configure these services to manage
+    Postgres for proper quorum-based connection routing.
+  :translated_contents: ''
+  :original_contents: 'There are two ways to install and configure these services
+    to manage Postgres for proper quorum-based connection routing. '
+- :key: '6'
+  :contents: "## Software versions"
+  :translated_contents: ''
+  :original_contents: "## Software versions "
+- :key: '7'
+  :contents: HARP has dependencies on external software. These must fit a minimum
+    version as listed here.
+  :translated_contents: ''
+  :original_contents: 'HARP has dependencies on external software. These must fit
+    a minimum version as listed here. '
+- :key: '8'
+  :contents: edb_tabl_notran_1
+  :translated_contents: ''
+  :original_contents: " edb_tabl_notran_1  "
+- :key: '9'
+  :contents: "## TPAExec"
+  :translated_contents: ''
+  :original_contents: "## TPAExec "
+- :key: '10'
+  :contents: The easiest way to install and configure HARP is to use the EDB TPAexec
+    utility for cluster deployment and management. For details on this software, see
+    the edb_lk_asis_1 .
+  :translated_contents: ''
+  :original_contents: 'The easiest way to install and configure HARP is to use the
+    EDB TPAexec utility for cluster deployment and management. For details on this
+    software, see the edb_lk_asis_1 . '
+- :key: '11'
+  :contents: edb_excla_notran_1 TPAExec is currently available only through an EULA
+    specifically dedicated to BDR cluster deployments. If you can't access the TPAExec
+    URL, contact your sales or account representative.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_1 TPAExec is currently available only through
+    an EULA specifically dedicated to BDR cluster deployments. If you can''t access
+    the TPAExec URL, contact your sales or account representative. '
+- :key: '12'
+  :contents: 'Configure TPAexec to recognize that cluster routing is managed through
+    HARP by ensuring the TPA `config.yml` file contains these attributes:'
+  :translated_contents: ''
+  :original_contents: 'Configure TPAexec to recognize that cluster routing is managed
+    through HARP by ensuring the TPA `config.yml` file contains these attributes: '
+- :key: '13'
+  :contents: edb_notranlate_0
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_0  "
+- :key: '14'
+  :contents: 'edb_excla_notran_2 Versions of TPAexec earlier than 21.1 require a slightly
+    different approach:'
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_2 Versions of TPAexec earlier than 21.1 require
+    a slightly different approach: '
+- :key: '15'
+  :contents: edb_notranlate_1
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_1  "
+- :key: '16'
+  :contents: 'After this, install HARP by invoking the `tpaexec` commands for making
+    cluster modifications:'
+  :translated_contents: ''
+  :original_contents: 'After this, install HARP by invoking the `tpaexec` commands
+    for making cluster modifications: '
+- :key: '17'
+  :contents: edb_notranlate_2
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_2  "
+- :key: '18'
+  :contents: No other modifications are necessary apart from cluster-specific considerations.
+  :translated_contents: ''
+  :original_contents: 'No other modifications are necessary apart from cluster-specific
+    considerations. '
+- :key: '19'
+  :contents: "## Package installation"
+  :translated_contents: ''
+  :original_contents: "## Package installation "
+- :key: '20'
+  :contents: Currently CentOS/RHEL packages are provided by the EDB packaging infrastructure.
+    For details, see the [HARP product page](https://www.enterprisedb.com/docs/harp/latest/).
+  :translated_contents: ''
+  :original_contents: 'Currently CentOS/RHEL packages are provided by the EDB packaging
+    infrastructure. For details, see the [HARP product page](https://www.enterprisedb.com/docs/harp/latest/). '
+- :key: '21'
+  :contents: "### etcd packages"
+  :translated_contents: ''
+  :original_contents: "### etcd packages "
+- :key: '22'
+  :contents: Currently `etcd` packages for many popular Linux distributions aren't
+    available by their standard public repositories. EDB has therefore packaged `etcd`
+    for RHEL and CentOS versions 7 and 8, Debian, and variants such as Ubuntu LTS.
+    You need access to our HARP package repository to use these libraries.
+  :translated_contents: ''
+  :original_contents: 'Currently `etcd` packages for many popular Linux distributions
+    aren''t available by their standard public repositories. EDB has therefore packaged
+    `etcd` for RHEL and CentOS versions 7 and 8, Debian, and variants such as Ubuntu
+    LTS. You need access to our HARP package repository to use these libraries. '
+- :key: '23'
+  :contents: "## Consensus layer"
+  :translated_contents: ''
+  :original_contents: "## Consensus layer "
+- :key: '24'
+  :contents: HARP requires a distributed consensus layer to operate. Currently this
+    must be either `bdr` or `etcd`. If using fewer than three BDR nodes, you might
+    need to rely on `etcd`. Otherwise any BDR service outage reduces the consensus
+    layer to a single node and thus prevents node consensus and disables Postgres
+    routing.
+  :translated_contents: ''
+  :original_contents: 'HARP requires a distributed consensus layer to operate. Currently
+    this must be either `bdr` or `etcd`. If using fewer than three BDR nodes, you
+    might need to rely on `etcd`. Otherwise any BDR service outage reduces the consensus
+    layer to a single node and thus prevents node consensus and disables Postgres
+    routing. '
+- :key: '25'
+  :contents: "### etcd"
+  :translated_contents: ''
+  :original_contents: "### etcd "
+- :key: '26'
+  :contents: If you're using `etcd` as the consensus layer, `etcd` must be installed
+    either directly on the Postgres nodes or in a separate location they can access.
+  :translated_contents: ''
+  :original_contents: 'If you''re using `etcd` as the consensus layer, `etcd` must
+    be installed either directly on the Postgres nodes or in a separate location they
+    can access. '
+- :key: '27'
+  :contents: 'To set `etcd` as the consensus layer, include this code in the HARP
+    `config.yml` configuration file:'
+  :translated_contents: ''
+  :original_contents: 'To set `etcd` as the consensus layer, include this code in
+    the HARP `config.yml` configuration file: '
+- :key: '28'
+  :contents: edb_notranlate_3
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_3  "
+- :key: '29'
+  :contents: When using TPAExec, all configured etcd endpoints are entered here automatically.
+  :translated_contents: ''
+  :original_contents: 'When using TPAExec, all configured etcd endpoints are entered
+    here automatically. '
+- :key: '30'
+  :contents: "### BDR"
+  :translated_contents: ''
+  :original_contents: "### BDR "
+- :key: '31'
+  :contents: The `bdr` native consensus layer is available from BDR 3.6.21 and 3.7.3.
+    This consensus layer model requires no supplementary software when managing routing
+    for a BDR cluster.
+  :translated_contents: ''
+  :original_contents: 'The `bdr` native consensus layer is available from BDR 3.6.21
+    and 3.7.3. This consensus layer model requires no supplementary software when
+    managing routing for a BDR cluster. '
+- :key: '32'
+  :contents: To ensure quorum is possible in the cluster, always use more than two
+    nodes so that BDR's consensus layer remains responsive during node maintenance
+    or outages.
+  :translated_contents: ''
+  :original_contents: 'To ensure quorum is possible in the cluster, always use more
+    than two nodes so that BDR''s consensus layer remains responsive during node maintenance
+    or outages. '
+- :key: '33'
+  :contents: 'To set BDR as the consensus layer, include this in the `config.yml`
+    configuration file:'
+  :translated_contents: ''
+  :original_contents: 'To set BDR as the consensus layer, include this in the `config.yml`
+    configuration file: '
+- :key: '34'
+  :contents: edb_notranlate_4
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_4  "
+- :key: '35'
+  :contents: The endpoints for a BDR consensus layer follow the standard Postgres
+    DSN connection format.
+  :translated_contents: ''
+  :original_contents: 'The endpoints for a BDR consensus layer follow the standard
+    Postgres DSN connection format. '

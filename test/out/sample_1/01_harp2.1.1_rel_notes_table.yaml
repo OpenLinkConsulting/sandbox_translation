@@ -1,0 +1,18 @@
+---
+- :id: '1'
+  :table_hash: &1
+  - Type: "----"
+    Description: "------------"
+  - Type: Enhancement
+    Description: DCS接続の損失に関する警告をログに記録する
+  - Type: Enhancement
+    Description: メタデータの更新に時間がかかりすぎる場合に警告をログに記録します - 通常は高遅延ネットワークが原因です
+  - Type: Bug Fix
+    Description: 障害時にharp_proxy.serviceをリスタート
+  - Type: Bug Fix
+    Description: harpctlの接続管理の同時実行の問題を修正
+  - Type: Bug Fix
+    Description: アンマネージドクラスターで以前のリーダーへの接続をプロキシしないでください
+  - Type: Bug Fix
+    Description: 場所が空の場合にhaprctlでパニックにならない
+  :translated_text: *1

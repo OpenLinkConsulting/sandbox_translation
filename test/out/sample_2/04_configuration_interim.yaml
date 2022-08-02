@@ -1,0 +1,189 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# Configuring HARP for cluster management`"
+  :original_contents: "`# Configuring HARP for cluster management` "
+- :key: '2'
+  :contents: The HARP configuration file follows a standard YAML-style formatting
+    that was simplified for readability. This file is located in the edb_tran_1 directory
+    by default and is named edb_tran_2
+  :translated_contents: HARP構成ファイルは、読みやすいように簡素化された標準のYAMLスタイルのフォーマットに従います。このファイルはデフォルトで`/etc/harp`ディレクトリにあり、`config.yml`という名前です
+  :original_contents: 'The HARP configuration file follows a standard YAML-style formatting
+    that was simplified for readability. This file is located in the `/etc/harp` directory
+    by default and is named `config.yml` '
+- :key: '3'
+  :contents: You can explicitly provide the configuration file location to all HARP  executables
+    by using the edb_tran_1/edb_tran_2 argument.
+  :translated_contents: "`-f`/`--config`引数を使用して、すべてのHARP実行可能ファイルに構成ファイルの場所を明示的に提供できます。"
+  :original_contents: 'You can explicitly provide the configuration file location
+    to all HARP  executables by using the `-f`/`--config` argument. '
+- :key: '4'
+  :contents: "## Standard configuration"
+  :translated_contents: "## 標準構成"
+  :original_contents: "## Standard configuration "
+- :key: '5'
+  :contents: 'HARP essentially operates as three components:'
+  :translated_contents: HARPは基本的に3つのコンポーネントとして動作します。
+  :original_contents: 'HARP essentially operates as three components: '
+- :key: '6'
+  :contents: "*  HARP Manager "
+  :translated_contents: "* HARPマネージャー "
+  :original_contents: "* HARP Manager "
+- :key: '7'
+  :contents: "*  HARP Proxy "
+  :translated_contents: "* HARPプロキシ "
+  :original_contents: "* HARP Proxy "
+- :key: '8'
+  :contents: "*  harpctl "
+  :translated_contents: "* harpctl"
+  :original_contents: "* harpctl "
+- :key: '9'
+  :contents: 'Each of these use the same standard edb_tran_1 configuration format,
+    which always include the following sections:'
+  :translated_contents: これらはそれぞれ、同じ標準の`config.yml`構成フォーマットを使用します。これには、常に次のセクションが含まれます。
+  :original_contents: 'Each of these use the same standard `config.yml` configuration
+    format, which always include the following sections: '
+- :key: '10'
+  :contents: "*  edb_tran_1 &mdash; The name of the cluster to target for all operations. "
+  :translated_contents: "* `cluster.name` &mdash;すべてのオペレーションの対象となるクラスターの名前。"
+  :original_contents: "* `cluster.name` &mdash; The name of the cluster to target
+    for all operations. "
+- :key: '11'
+  :contents: "*  edb_tran_1 &mdash; DCS driver and connection configuration for all
+    endpoints. "
+  :translated_contents: "* `dcs` &mdash;すべてのエンドポイントのDCSドライバーと接続構成。"
+  :original_contents: "* `dcs` &mdash; DCS driver and connection configuration for
+    all endpoints. "
+- :key: '12'
+  :contents: 'This means a standard preamble is always included for HARP operations,
+    such as the following:'
+  :translated_contents: これは、次のようなHARP操作には常に標準プリアンブルが含まれることを意味します。
+  :original_contents: 'This means a standard preamble is always included for HARP
+    operations, such as the following: '
+- :key: '13'
+  :contents: edb_notranlate_0
+  :translated_contents: edb_notranlate_0
+  :original_contents: " edb_notranlate_0  "
+- :key: '14'
+  :contents: Other sections are optional or specific to the named HARP component.
+  :translated_contents: 他のセクションは、オプションまたは名前付けたHARPコンポーネントに固有です。
+  :original_contents: 'Other sections are optional or specific to the named HARP component. '
+- :key: '15'
+  :contents: "### Cluster name"
+  :translated_contents: "### クラスター名"
+  :original_contents: "### Cluster name "
+- :key: '16'
+  :contents: The edb_tran_1 entry under the edb_tran_2 heading is required for all  interaction
+    with HARP. Each HARP cluster has a name for both disambiguation and for labeling
+    data in the DCS for the specific cluster.
+  :translated_contents: "`cluster`見出しの下の`name`エントリーは、 HARPとのすべての相互作用に必要です。各HARPクラスターには、特定のクラスターのDCS内の明確化とデータのラベル付けの両方の名前があります。"
+  :original_contents: 'The `name` entry under the `cluster` heading is required for
+    all  interaction with HARP. Each HARP cluster has a name for both disambiguation
+    and for labeling data in the DCS for the specific cluster. '
+- :key: '17'
+  :contents: HARP Manager writes information about the cluster here for consumption
+    by  HARP Proxy and harpctl. HARP Proxy services direct traffic to nodes in  this
+    cluster. The edb_tran_1 management tool interacts with this cluster.
+  :translated_contents: HARPマネージャーは、 HARPプロキシとharpctlが使用するクラスターに関する情報をここに書き込みます。 HARPプロキシサービスは、このクラスター内のノードにトラフィックを誘導します。
+    `harpctl`管理ツールはこのクラスターと対話します。
+  :original_contents: 'HARP Manager writes information about the cluster here for
+    consumption by  HARP Proxy and harpctl. HARP Proxy services direct traffic to
+    nodes in  this cluster. The `harpctl` management tool interacts with this cluster. '
+- :key: '18'
+  :contents: "### DCS settings"
+  :translated_contents: "### DCS設定"
+  :original_contents: "### DCS settings "
+- :key: '19'
+  :contents: Configuring the consensus layer is key to HARP functionality. Without
+    the DCS,  HARP has nowhere to store cluster metadata, can't hold leadership elections,  and
+    so on. Therefore this portion of the configuration is required, and  certain elements
+    are optional.
+  :translated_contents: コンセンサスレイヤーの構成は、 HARP機能のキーとなります。 DCSがなければ、 HARPにはクラスターメタデータを保存する場所がなく、リーダーシップ選挙などを行うことができません。したがって、構成のこの部分は必須であり、特定の要素はオプションです。
+  :original_contents: 'Configuring the consensus layer is key to HARP functionality.
+    Without the DCS,  HARP has nowhere to store cluster metadata, can''t hold leadership
+    elections,  and so on. Therefore this portion of the configuration is required,
+    and  certain elements are optional. '
+- :key: '20'
+  :contents: 'Specify all elements under a section named edb_tran_1 with these multiple  supplementary
+    entries:'
+  :translated_contents: 次の複数の補助エントリを使用して、 `dcs`という名前のセクションの下のすべての要素を指定します。
+  :original_contents: 'Specify all elements under a section named `dcs` with these
+    multiple  supplementary entries: '
+- :key: '21'
+  :contents: "-  **edb_tran_2**: Required type of consensus layer to use.  Currently
+    can be edb_tran_3 or edb_tran_6. Support for edb_tran_6 as a consensus layer is
+    \ experimental. Using edb_tran_6 as the consensus layer reduces the  additional
+    software for consensus storage but expects a minimum of three  full BDR member
+    nodes to maintain quorum during database maintenance. "
+  :translated_contents: "- **`driver`**：使用するコンセンサスレイヤーの必須タイプ。現在は`etcd`または`bdr`です。コンセンサスレイヤーとしての`bdr`のサポートは実験的です。コンセンサスレイヤーとして`bdr`を使用すると、コンセンサスストレージ用の追加ソフトウェアが削減されますが、データベースのメンテナンス中にクォーラムを維持するために少なくとも3つの完全なBDRメンバーノードが必要です。 "
+  :original_contents: "- **`driver`**: Required type of consensus layer to use.  Currently
+    can be `etcd` or `bdr`. Support for `bdr` as a consensus layer is  experimental.
+    Using `bdr` as the consensus layer reduces the  additional software for consensus
+    storage but expects a minimum of three  full BDR member nodes to maintain quorum
+    during database maintenance. "
+- :key: '22'
+  :contents: "-  **edb_tran_2**: Required list of connection strings to contact the
+    DCS. List every node of the DCS here if possible. This ensures HARP  continues
+    to function as long as a majority of the DCS can still  operate and be reached
+    by the network. "
+  :translated_contents: "- **`endpoints`**：DCSに接続するために必要な接続文字列のリスト。可能であれば、ここにDCSのすべてのノードをリストします。これにより、DCSの大部分が引き続き動作し、ネットワークが到達できる限り、
+    HARPが機能し続けます。 "
+  :original_contents: "- **`endpoints`**: Required list of connection strings to contact
+    the DCS. List every node of the DCS here if possible. This ensures HARP  continues
+    to function as long as a majority of the DCS can still  operate and be reached
+    by the network. "
+- :key: '23'
+  :contents: 'Format when using edb_tran_1 as the consensus layer is as follows: edb_notranlate_1  Format
+    when using the experimental edb_tran_3 consensus layer is as follows: edb_notranlate_2  Currently,
+    edb_tran_3 consensus layer requires the first endpoint to point to the local postgres
+    instance.'
+  :translated_contents: "`etcd`をコンセンサスレイヤーとして使用する場合のフォーマットは次のとおりです。 edb_notranlate_1
+    実験的な`bdr`コンセンサスレイヤーを使用する場合のフォーマットは次のとおりです。 edb_notranlate_2 現在、 `bdr`コンセンサスレイヤーは最初のエンドポイントがローカルのpostgresインスタンスを指す必要があります。"
+  :original_contents: "  Format when using `etcd` as the consensus layer is as follows:
+    edb_notranlate_1  Format when using the experimental `bdr` consensus layer is
+    as follows: edb_notranlate_2  Currently, `bdr` consensus layer requires the first
+    endpoint to point to the local postgres instance.   "
+- :key: '24'
+  :contents: "-  **edb_tran_2**: Time in milliseconds to consider a request as failed.
+    If HARP makes a request to the DCS and receives no response in this time, it considers
+    the operation as failed. This can cause the issue to be logged as an error or
+    retried, depending on the nature of the request. Default: 250. "
+  :translated_contents: "- **`request_timeout`**：要求が失敗したと見なされる時間（ミリ秒）。 HARPはDCSに要求を行い、この時間内に応答を受信しない場合、操作は失敗したと見なされます。これにより、要求の性質に応じて、問題がエラーとしてログに記録されるか、再試行されます。デフォルト：250。 "
+  :original_contents: "- **`request_timeout`**: Time in milliseconds to consider a
+    request as failed. If HARP makes a request to the DCS and receives no response
+    in this time, it considers the operation as failed. This can cause the issue to
+    be logged as an error or retried, depending on the nature of the request. Default:
+    250. "
+- :key: '25'
+  :contents: 'The following DCS SSL settings apply only when  edb_notranlate_3 yaml
+    dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379 edb_notranlate_4
+    yaml cluster: name: mycluster'
+  :translated_contents: '次のDCS SSL設定は、 edb_notranlate_3 yaml dcs:driver:etcd endpoints:
+    - host1:2379 - host2:2379 - host3:2379 edb_notranlate_4 yamlクラスター:名前: mycluster'
+  :original_contents: 'The following DCS SSL settings apply only when  edb_notranlate_3
+    yaml dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379 edb_notranlate_4
+    yaml cluster: name: mycluster '
+- :key: '26'
+  :contents: 'dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379'
+  :translated_contents: dcs：ドライバー：etcdエンドポイント： - host1:2379 - host2:2379 - host3:2379
+  :original_contents: 'dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379 '
+- :key: '27'
+  :contents: 'manager: name: node1 log_level: INFO edb_notranlate_5 yaml cluster:
+    name: mycluster'
+  :translated_contents: manager：名前：node1 log_level：INFO edb_notranlate_5 yaml cluster：名前：mycluster
+  :original_contents: 'manager: name: node1 log_level: INFO edb_notranlate_5 yaml
+    cluster: name: mycluster '
+- :key: '28'
+  :contents: 'dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379'
+  :translated_contents: dcs：ドライバー：etcdエンドポイント： - host1:2379 - host2:2379 - host3:2379
+  :original_contents: 'dcs: driver: etcd endpoints: - host1:2379 - host2:2379 - host3:2379 '
+- :key: '29'
+  :contents: 'proxy: name: proxy1 location: dc1 pgbouncer_bin_dir: /usr/sbin edb_notranlate_6
+    bash harpctl set node node1 lease_refresh_interval=100 edb_notranlate_7 bash harpctl
+    set proxy global max_client_conn=1000 edb_tran_1`'
+  :translated_contents: proxy：名前：proxy1場所：dc1 pgbouncer_bin_dir：/usr/sbin edb_notranlate_6
+    bash harpctl set node node1 lease_refresh_interval=100 edb_notranlate_7 bash harpctl
+    set proxy global max_client_conn=1000 ```
+  :original_contents: 'proxy: name: proxy1 location: dc1 pgbouncer_bin_dir: /usr/sbin
+    edb_notranlate_6 bash harpctl set node node1 lease_refresh_interval=100 edb_notranlate_7
+    bash harpctl set proxy global max_client_conn=1000 ``` '

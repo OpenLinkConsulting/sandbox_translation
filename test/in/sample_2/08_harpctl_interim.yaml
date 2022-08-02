@@ -1,0 +1,627 @@
+---
+- :key: '1'
+  :contents: "`# harpctl command-line tool`"
+  :translated_contents: ''
+  :original_contents: "`# harpctl command-line tool` "
+- :key: '2'
+  :contents: '`harpctl` is a command-line tool for directly manipulating the consensus
+    layer contents to fit desired cluster geometry. You can use it to, for example,
+    examine node status, "promote" a node to lead master, disable/enable cluster management,
+    bootstrap cluster settings, and so on.'
+  :translated_contents: ''
+  :original_contents: '`harpctl` is a command-line tool for directly manipulating
+    the consensus layer contents to fit desired cluster geometry. You can use it to,
+    for example, examine node status, "promote" a node to lead master, disable/enable
+    cluster management, bootstrap cluster settings, and so on. '
+- :key: '3'
+  :contents: "## Synopsis"
+  :translated_contents: ''
+  :original_contents: "## Synopsis "
+- :key: '4'
+  :contents: edb_notranlate_0
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_0  "
+- :key: '5'
+  :contents: In addition to this basic synopsis, each of the available commands has
+    its own series of allowed subcommands and flags.
+  :translated_contents: ''
+  :original_contents: 'In addition to this basic synopsis, each of the available commands
+    has its own series of allowed subcommands and flags. '
+- :key: '6'
+  :contents: "## Configuration"
+  :translated_contents: ''
+  :original_contents: "## Configuration "
+- :key: '7'
+  :contents: "`harpctl` must interact with the consensus  layer to operate. This means
+    a certain minimum amount of settings must be  defined in `config.yml` for successful
+    execution. This includes:"
+  :translated_contents: ''
+  :original_contents: "`harpctl` must interact with the consensus  layer to operate.
+    This means a certain minimum amount of settings must be  defined in `config.yml`
+    for successful execution. This includes: "
+- :key: '8'
+  :contents: "*  `dcs.driver` "
+  :translated_contents: ''
+  :original_contents: "* `dcs.driver` "
+- :key: '9'
+  :contents: "*  `dcs.endpoints` "
+  :translated_contents: ''
+  :original_contents: "* `dcs.endpoints` "
+- :key: '10'
+  :contents: "*  `cluster.name` "
+  :translated_contents: ''
+  :original_contents: "* `cluster.name` "
+- :key: '11'
+  :contents: 'As an example using etcd:'
+  :translated_contents: ''
+  :original_contents: 'As an example using etcd: '
+- :key: '12'
+  :contents: edb_notranlate_1
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_1  "
+- :key: '13'
+  :contents: See edb_lk_asis_1  for details.
+  :translated_contents: ''
+  :original_contents: 'See edb_lk_asis_1  for details. '
+- :key: '14'
+  :contents: "## Execution"
+  :translated_contents: ''
+  :original_contents: "## Execution "
+- :key: '15'
+  :contents: 'Execute `harpctl` like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute `harpctl` like this: '
+- :key: '16'
+  :contents: edb_notranlate_2
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_2  "
+- :key: '17'
+  :contents: 'Each command has its own series of subcommands and flags. Further help
+    for  these are available by executing this command:'
+  :translated_contents: ''
+  :original_contents: 'Each command has its own series of subcommands and flags. Further
+    help for  these are available by executing this command: '
+- :key: '18'
+  :contents: edb_notranlate_3
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_3  "
+- :key: '19'
+  :contents: "## `harpctl apply`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl apply` "
+- :key: '20'
+  :contents: You must use an `apply` command to "bootstrap" a HARP cluster using a
+    file that defines various attributes of the intended cluster.
+  :translated_contents: ''
+  :original_contents: 'You must use an `apply` command to "bootstrap" a HARP cluster
+    using a file that defines various attributes of the intended cluster. '
+- :key: '21'
+  :contents: 'Execute an `apply` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute an `apply` command like this: '
+- :key: '22'
+  :contents: edb_notranlate_4
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_4  "
+- :key: '23'
+  :contents: This essentially creates all of the initial cluster metadata, default
+    or custom  management settings, and so on. This is done here because the DCS is
+    used as  the ultimate source of truth for managing the cluster, and this makes
+    it  possible to change these settings dynamically.
+  :translated_contents: ''
+  :original_contents: 'This essentially creates all of the initial cluster metadata,
+    default or custom  management settings, and so on. This is done here because the
+    DCS is used as  the ultimate source of truth for managing the cluster, and this
+    makes it  possible to change these settings dynamically. '
+- :key: '24'
+  :contents: This can either be done once to bootstrap the entire cluster, once per
+    type of object, or even on a per-node basis for the sake of simplicity.
+  :translated_contents: ''
+  :original_contents: 'This can either be done once to bootstrap the entire cluster,
+    once per type of object, or even on a per-node basis for the sake of simplicity. '
+- :key: '25'
+  :contents: 'This is an example of a bootstrap file for a single node:'
+  :translated_contents: ''
+  :original_contents: 'This is an example of a bootstrap file for a single node: '
+- :key: '26'
+  :contents: edb_notranlate_5
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_5  "
+- :key: '27'
+  :contents: As seen here, it is good practice to always include a cluster name preamble
+    to  ensure all changes target the correct HARP cluster, in case several are  operating
+    in the same environment.
+  :translated_contents: ''
+  :original_contents: 'As seen here, it is good practice to always include a cluster
+    name preamble to  ensure all changes target the correct HARP cluster, in case
+    several are  operating in the same environment. '
+- :key: '28'
+  :contents: Once `apply` completes without error, the node is integrated with the
+    rest  of the cluster.
+  :translated_contents: ''
+  :original_contents: 'Once `apply` completes without error, the node is integrated
+    with the rest  of the cluster. '
+- :key: '29'
+  :contents: edb_excla_notran_1 You can also use this command to bootstrap the entire
+    cluster at once since all defined sections are applied at the same time. However,
+    we don't encourage this use for anything but testing as it increases the difficulty
+    of validating each portion of the cluster during initial definition.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_1 You can also use this command to bootstrap
+    the entire cluster at once since all defined sections are applied at the same
+    time. However, we don''t encourage this use for anything but testing as it increases
+    the difficulty of validating each portion of the cluster during initial definition. '
+- :key: '30'
+  :contents: "## `harpctl fence`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl fence` "
+- :key: '31'
+  :contents: Marks the local or specified node as fenced. A node with this status
+    is  essentially completely excluded from the cluster. HARP Proxy doesn't send
+    it  traffic, its representative HARP Manager doesn't claim the lead master lease,  and
+    further steps are also taken. If running, HARP Manager stops Postgres  on the
+    node as well.
+  :translated_contents: ''
+  :original_contents: 'Marks the local or specified node as fenced. A node with this
+    status is  essentially completely excluded from the cluster. HARP Proxy doesn''t
+    send it  traffic, its representative HARP Manager doesn''t claim the lead master
+    lease,  and further steps are also taken. If running, HARP Manager stops Postgres  on
+    the node as well. '
+- :key: '32'
+  :contents: 'Execute a `fence` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute a `fence` command like this: '
+- :key: '33'
+  :contents: edb_notranlate_6
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_6  "
+- :key: '34'
+  :contents: The node-name is optional; if omitted, `harpctl` uses the name of the
+    locally configured node.
+  :translated_contents: ''
+  :original_contents: 'The node-name is optional; if omitted, `harpctl` uses the name
+    of the locally configured node. '
+- :key: '35'
+  :contents: "## `harpctl get`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl get` "
+- :key: '36'
+  :contents: 'Fetches information stored in the consensus layer for various elements
+    of the cluster. This includes nodes, locations, the cluster, and so on. The full
+    list includes:'
+  :translated_contents: ''
+  :original_contents: 'Fetches information stored in the consensus layer for various
+    elements of the cluster. This includes nodes, locations, the cluster, and so on.
+    The full list includes: '
+- :key: '37'
+  :contents: "*  `cluster` &mdash; Returns the cluster state. "
+  :translated_contents: ''
+  :original_contents: "* `cluster` &mdash; Returns the cluster state. "
+- :key: '38'
+  :contents: "*  `leader` &mdash; Returns the current or specified location leader. "
+  :translated_contents: ''
+  :original_contents: "* `leader` &mdash; Returns the current or specified location
+    leader. "
+- :key: '39'
+  :contents: "*  `location` &mdash; Returns current or specified location information. "
+  :translated_contents: ''
+  :original_contents: "* `location` &mdash; Returns current or specified location
+    information. "
+- :key: '40'
+  :contents: "*  `locations` &mdash; Returns list of all locations. "
+  :translated_contents: ''
+  :original_contents: "* `locations` &mdash; Returns list of all locations. "
+- :key: '41'
+  :contents: "*  `node` &mdash; Returns the specified Postgres node. "
+  :translated_contents: ''
+  :original_contents: "* `node` &mdash; Returns the specified Postgres node. "
+- :key: '42'
+  :contents: "*  `nodes` &mdash; Returns list of all Postgres nodes. "
+  :translated_contents: ''
+  :original_contents: "* `nodes` &mdash; Returns list of all Postgres nodes. "
+- :key: '43'
+  :contents: "*  `proxy` &mdash; Returns current or specified proxy information. "
+  :translated_contents: ''
+  :original_contents: "* `proxy` &mdash; Returns current or specified proxy information. "
+- :key: '44'
+  :contents: "*  `proxies` &mdash; Returns list of all proxy nodes. "
+  :translated_contents: ''
+  :original_contents: "* `proxies` &mdash; Returns list of all proxy nodes. "
+- :key: '45'
+  :contents: "### `harpctl get cluster`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get cluster` "
+- :key: '46'
+  :contents: 'Fetches information stored in the consensus layer for the current cluster:'
+  :translated_contents: ''
+  :original_contents: 'Fetches information stored in the consensus layer for the current
+    cluster: '
+- :key: '47'
+  :contents: edb_notranlate_7
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_7  "
+- :key: '48'
+  :contents: "### `harpctl get leader`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get leader` "
+- :key: '49'
+  :contents: Fetches node information for the current lead master stored in the DCS
+    for the  specified location. If no location is passed, `harpctl` attempts to  derive
+    it based on the location of the current node where it was executed.
+  :translated_contents: ''
+  :original_contents: 'Fetches node information for the current lead master stored
+    in the DCS for the  specified location. If no location is passed, `harpctl` attempts
+    to  derive it based on the location of the current node where it was executed. '
+- :key: '50'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '51'
+  :contents: edb_notranlate_8
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_8  "
+- :key: '52'
+  :contents: "### `harpctl get location`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get location` "
+- :key: '53'
+  :contents: Fetches location information for the specified location. If no location
+    is  passed, `harpctl` attempts to derive it based on the location of the  current
+    node where it was executed.
+  :translated_contents: ''
+  :original_contents: 'Fetches location information for the specified location. If
+    no location is  passed, `harpctl` attempts to derive it based on the location
+    of the  current node where it was executed. '
+- :key: '54'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '55'
+  :contents: edb_notranlate_9
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_9  "
+- :key: '56'
+  :contents: "### `harpctl get locations`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get locations` "
+- :key: '57'
+  :contents: Fetches information for all locations currently present in the DCS.
+  :translated_contents: ''
+  :original_contents: 'Fetches information for all locations currently present in
+    the DCS. '
+- :key: '58'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '59'
+  :contents: edb_notranlate_10
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_10  "
+- :key: '60'
+  :contents: "### `harpctl get node`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get node` "
+- :key: '61'
+  :contents: Fetches node information stored in the DCS for the specified node.
+  :translated_contents: ''
+  :original_contents: 'Fetches node information stored in the DCS for the specified
+    node. '
+- :key: '62'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '63'
+  :contents: edb_notranlate_11
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_11  "
+- :key: '64'
+  :contents: "### `harpctl get nodes`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get nodes` "
+- :key: '65'
+  :contents: Fetches node information stored in the DCS for the all nodes in the cluster.
+  :translated_contents: ''
+  :original_contents: 'Fetches node information stored in the DCS for the all nodes
+    in the cluster. '
+- :key: '66'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '67'
+  :contents: edb_notranlate_12
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_12  "
+- :key: '68'
+  :contents: "### `harpctl get proxy`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get proxy` "
+- :key: '69'
+  :contents: Fetches proxy information stored in the DCS for specified proxy. Specify
+    `global` to see proxy defaults for this cluster.
+  :translated_contents: ''
+  :original_contents: 'Fetches proxy information stored in the DCS for specified proxy.
+    Specify `global` to see proxy defaults for this cluster. '
+- :key: '70'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '71'
+  :contents: edb_notranlate_13
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_13  "
+- :key: '72'
+  :contents: "### `harpctl get proxies`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl get proxies` "
+- :key: '73'
+  :contents: Fetches proxy information stored in the DCS for all proxies in the cluster.  Additionally,
+    lists the `global` pseudo-proxy for default proxy settings.
+  :translated_contents: ''
+  :original_contents: 'Fetches proxy information stored in the DCS for all proxies
+    in the cluster.  Additionally, lists the `global` pseudo-proxy for default proxy
+    settings. '
+- :key: '74'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '75'
+  :contents: edb_notranlate_14
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_14  "
+- :key: '76'
+  :contents: "## `harpctl manage`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl manage` "
+- :key: '77'
+  :contents: If a cluster isn't in a managed state, instructs all HARP Manager services
+    to resume monitoring Postgres and updating the consensus layer. Do this after
+    maintenance is complete following HARP software updates or other significant changes
+    that might affect the whole cluster.
+  :translated_contents: ''
+  :original_contents: 'If a cluster isn''t in a managed state, instructs all HARP
+    Manager services to resume monitoring Postgres and updating the consensus layer.
+    Do this after maintenance is complete following HARP software updates or other
+    significant changes that might affect the whole cluster. '
+- :key: '78'
+  :contents: 'Execute a `manage` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute a `manage` command like this: '
+- :key: '79'
+  :contents: edb_notranlate_15
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_15  "
+- :key: '80'
+  :contents: edb_excla_notran_2 Currently you can enable or disable cluster management
+    only at the `cluster` level. Later versions will also make it possible to do this
+    for individual nodes or proxies.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_2 Currently you can enable or disable cluster
+    management only at the `cluster` level. Later versions will also make it possible
+    to do this for individual nodes or proxies. '
+- :key: '81'
+  :contents: "## `harpctl promote`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl promote` "
+- :key: '82'
+  :contents: 'Promotes the next available node that meets leadership requirements
+    to lead  master in the current Location. Since this is a requested event, it invokes
+    a  smooth handover where:'
+  :translated_contents: ''
+  :original_contents: 'Promotes the next available node that meets leadership requirements
+    to lead  master in the current Location. Since this is a requested event, it invokes
+    a  smooth handover where: '
+- :key: '83'
+  :contents: '1. The existing lead master releases the lead master lease, provided:
+    - If CAMO is enabled, the promoted node must be up to date and CAMO ready, and
+    the CAMO queue must have less than `node.maximum_camo_lag` bytes remaining to
+    be applied. - Replication lag between the old lead master and the promoted node
+    is less than `node.maximum_lag`.'
+  :translated_contents: ''
+  :original_contents: '1. The existing lead master releases the lead master lease,
+    provided: - If CAMO is enabled, the promoted node must be up to date and CAMO
+    ready, and the CAMO queue must have less than `node.maximum_camo_lag` bytes remaining
+    to be applied. - Replication lag between the old lead master and the promoted
+    node is less than `node.maximum_lag`. '
+- :key: '84'
+  :contents: 2. The promoted node is the only valid candidate to take the lead master
+    lease and does so as soon as it is released by the current holder. All  other
+    nodes ignore the unset lead master lease. - If CAMO is enabled, the promoted node
+    temporarily disables client traffic until the CAMO queue is fully applied, even
+    though it holds the  lead master lease.
+  :translated_contents: ''
+  :original_contents: '2. The promoted node is the only valid candidate to take the
+    lead master lease and does so as soon as it is released by the current holder.
+    All  other nodes ignore the unset lead master lease. - If CAMO is enabled, the
+    promoted node temporarily disables client traffic until the CAMO queue is fully
+    applied, even though it holds the  lead master lease. '
+- :key: '85'
+  :contents: 3. HARP Proxy, if using pgbouncer, will `PAUSE` connections to allow
+    ongoing  transactions to complete. Once the lead master lease is claimed by the
+    promoted node, it reconfigures PgBouncer for the new connection target and resumes
+    database traffic. If HARP Proxy is using the builtin proxy, it terminates existing  connections
+    and creates new connections to the lead master as new connections are requested
+    from the client.
+  :translated_contents: ''
+  :original_contents: '3. HARP Proxy, if using pgbouncer, will `PAUSE` connections
+    to allow ongoing  transactions to complete. Once the lead master lease is claimed
+    by the promoted node, it reconfigures PgBouncer for the new connection target
+    and resumes database traffic. If HARP Proxy is using the builtin proxy, it terminates
+    existing  connections and creates new connections to the lead master as new connections
+    are requested from the client. '
+- :key: '86'
+  :contents: 'Execute a `promote` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute a `promote` command like this: '
+- :key: '87'
+  :contents: edb_notranlate_16
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_16  "
+- :key: '88'
+  :contents: Provide the `--force` option to forcibly set a node to lead master,  even
+    if it doesn't meet the criteria for becoming lead master. This  circumvents any
+    verification of CAMO status or replication lag and causes an  immediate transition
+    to the promoted node.  This is the only way to specify an exact node for promotion.
+  :translated_contents: ''
+  :original_contents: 'Provide the `--force` option to forcibly set a node to lead
+    master,  even if it doesn''t meet the criteria for becoming lead master. This  circumvents
+    any verification of CAMO status or replication lag and causes an  immediate transition
+    to the promoted node.  This is the only way to specify an exact node for promotion. '
+- :key: '89'
+  :contents: The node must be online and operational for this to succeed. Use this  option
+    with care.
+  :translated_contents: ''
+  :original_contents: 'The node must be online and operational for this to succeed.
+    Use this  option with care. '
+- :key: '90'
+  :contents: "## `harpctl set`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl set` "
+- :key: '91'
+  :contents: 'Sets a specific attribute in the cluster to the supplied value. This
+    is used to  tweak configuration settings for a specific node, proxy, location,
+    or the  cluster rather than using `apply`. You can use this for the following
+    object types:'
+  :translated_contents: ''
+  :original_contents: 'Sets a specific attribute in the cluster to the supplied value.
+    This is used to  tweak configuration settings for a specific node, proxy, location,
+    or the  cluster rather than using `apply`. You can use this for the following
+    object types: '
+- :key: '92'
+  :contents: "*  `cluster` &mdash; Sets cluster-related attributes. "
+  :translated_contents: ''
+  :original_contents: "* `cluster` &mdash; Sets cluster-related attributes. "
+- :key: '93'
+  :contents: "*  `location` &mdash; Sets specific location attributes. "
+  :translated_contents: ''
+  :original_contents: "* `location` &mdash; Sets specific location attributes. "
+- :key: '94'
+  :contents: "*  `node` &mdash; Sets specific node attributes. "
+  :translated_contents: ''
+  :original_contents: "* `node` &mdash; Sets specific node attributes. "
+- :key: '95'
+  :contents: "*  `proxy` &mdash; Sets specific proxy attributes. "
+  :translated_contents: ''
+  :original_contents: "* `proxy` &mdash; Sets specific proxy attributes. "
+- :key: '96'
+  :contents: "### `harpctl set cluster`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl set cluster` "
+- :key: '97'
+  :contents: Sets cluster-related attributes only.
+  :translated_contents: ''
+  :original_contents: 'Sets cluster-related attributes only. '
+- :key: '98'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '99'
+  :contents: edb_notranlate_17
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_17  "
+- :key: '100'
+  :contents: "### `harpctl set node`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl set node` "
+- :key: '101'
+  :contents: Sets node-related attributes for the named node. Any options mentioned
+    in  edb_lk_asis_2  are valid here.
+  :translated_contents: ''
+  :original_contents: 'Sets node-related attributes for the named node. Any options
+    mentioned in  edb_lk_asis_2  are valid here. '
+- :key: '102'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '103'
+  :contents: edb_notranlate_18
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_18  "
+- :key: '104'
+  :contents: "### `harpctl set proxy`"
+  :translated_contents: ''
+  :original_contents: "### `harpctl set proxy` "
+- :key: '105'
+  :contents: Sets proxy-related attributes for the named proxy. Any options mentioned
+    in the edb_lk_asis_3   are valid here.   Properties set this way require a restart
+    of the proxy before the new value takes effect.
+  :translated_contents: ''
+  :original_contents: 'Sets proxy-related attributes for the named proxy. Any options
+    mentioned in the edb_lk_asis_3   are valid here.   Properties set this way require
+    a restart of the proxy before the new value takes effect. '
+- :key: '106'
+  :contents: 'Example:'
+  :translated_contents: ''
+  :original_contents: 'Example: '
+- :key: '107'
+  :contents: edb_notranlate_19
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_19  "
+- :key: '108'
+  :contents: 'Use `global` for cluster-wide proxy defaults:'
+  :translated_contents: ''
+  :original_contents: 'Use `global` for cluster-wide proxy defaults: '
+- :key: '109'
+  :contents: edb_notranlate_20
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_20  "
+- :key: '110'
+  :contents: "## `harpctl unfence`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl unfence` "
+- :key: '111'
+  :contents: Removes the `fenced` attribute from the local or specified node. This  removes
+    all previously applied cluster exclusions from the node so that it can  again
+    receive traffic or hold the lead master lease. Postgres is also started if it
+    isn't running.
+  :translated_contents: ''
+  :original_contents: 'Removes the `fenced` attribute from the local or specified
+    node. This  removes all previously applied cluster exclusions from the node so
+    that it can  again receive traffic or hold the lead master lease. Postgres is
+    also started if it isn''t running. '
+- :key: '112'
+  :contents: 'Execute an `unfence` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute an `unfence` command like this: '
+- :key: '113'
+  :contents: edb_notranlate_21
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_21  "
+- :key: '114'
+  :contents: The node-name is optional. If you omit it, `harpctl` uses the name of
+    the locally configured node.
+  :translated_contents: ''
+  :original_contents: 'The node-name is optional. If you omit it, `harpctl` uses the
+    name of the locally configured node. '
+- :key: '115'
+  :contents: "## `harpctl unmanage`"
+  :translated_contents: ''
+  :original_contents: "## `harpctl unmanage` "
+- :key: '116'
+  :contents: Instructs all HARP Manager services in the cluster to remain running
+    but no  longer actively monitoring Postgres, or modify the contents of the consensus  layer.
+    This means that any ordinary failover event such as a node outage  doesn't result
+    in a leadership migration. This is intended for system or HARP  maintenance prior
+    to making changes to HARP software or other significant changes to the cluster.
+  :translated_contents: ''
+  :original_contents: 'Instructs all HARP Manager services in the cluster to remain
+    running but no  longer actively monitoring Postgres, or modify the contents of
+    the consensus  layer. This means that any ordinary failover event such as a node
+    outage  doesn''t result in a leadership migration. This is intended for system
+    or HARP  maintenance prior to making changes to HARP software or other significant
+    changes to the cluster. '
+- :key: '117'
+  :contents: 'Execute an `unmanage` command like this:'
+  :translated_contents: ''
+  :original_contents: 'Execute an `unmanage` command like this: '
+- :key: '118'
+  :contents: edb_notranlate_22
+  :translated_contents: ''
+  :original_contents: " edb_notranlate_22  "
+- :key: '119'
+  :contents: edb_excla_notran_3 Currently you can enable or disable cluster management
+    at only the `cluster` level. Later versions will also make it possible to do this
+    for individual nodes or proxies.
+  :translated_contents: ''
+  :original_contents: 'edb_excla_notran_3 Currently you can enable or disable cluster
+    management at only the `cluster` level. Later versions will also make it possible
+    to do this for individual nodes or proxies. '

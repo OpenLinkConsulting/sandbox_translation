@@ -1,0 +1,223 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# HARP Manager`"
+  :original_contents: "`# HARP Manager` "
+- :key: '2'
+  :contents: HARP Manager is a daemon that interacts with the local PostgreSQL/BDR
+    node and stores information about its state in the consensus layer. Manager determines
+    the node that currently holds leader status for a respective location and enforces
+    configuration (lag, CAMO lag, etc.) constraints to prevent ineligible nodes from
+    leader consideration.
+  :translated_contents: HARP Managerは、ローカルのPostgreSQL / BDRノードと対話し、その状態に関する情報をコンセンサスレイヤーに保存するデーモンです。
+    Managerは、それぞれのロケーションのリーダーステータスを現在保持しているノードを特定し、構成（ラグ、CAMOラグなど）の制約を適用して、資格のないノードがリーダーの検討対象とならないようにします。
+  :original_contents: 'HARP Manager is a daemon that interacts with the local PostgreSQL/BDR
+    node and stores information about its state in the consensus layer. Manager determines
+    the node that currently holds leader status for a respective location and enforces
+    configuration (lag, CAMO lag, etc.) constraints to prevent ineligible nodes from
+    leader consideration. '
+- :key: '3'
+  :contents: Every Postgres node in the cluster must have an associated HARP Manager.  Other
+    nodes can exist, but they can't to participate as lead or  shadow master roles
+    or any other functionality that requires a HARP Manager.
+  :translated_contents: クラスター内のすべてのPostgresノードには、 HARP Managerが関連付けられている必要があります。他のノードは存在できますが、リードまたはシャドウマスターの役割、またはHARPマネージャーを必要とするその他の機能として参加することはできません。
+  :original_contents: 'Every Postgres node in the cluster must have an associated
+    HARP Manager.  Other nodes can exist, but they can''t to participate as lead or  shadow
+    master roles or any other functionality that requires a HARP Manager. '
+- :key: '4'
+  :contents: edb_excla_notran_1 HARP Manager expects the be used to start and stop
+    the database.  Stopping HARP Manager will stop the database.  Starting HARP Manager
+    will start the database if it  isn't already started.  If another method is used
+    to stop the database then  HARP Manager will try and restart it.
+  :translated_contents: edb_excla_notran_1 HARP Managerは、データベースの起動および停止に使用されることを想定しています。
+    HARPマネージャーを停止すると、データベースが停止します。 HARP Managerを起動すると、データベースがまだ起動されていない場合は起動します。別の方法を使用してデータベースを停止すると、
+    HARPマネージャーはデータベースを再起動します。
+  :original_contents: 'edb_excla_notran_1 HARP Manager expects the be used to start
+    and stop the database.  Stopping HARP Manager will stop the database.  Starting
+    HARP Manager will start the database if it  isn''t already started.  If another
+    method is used to stop the database then  HARP Manager will try and restart it. '
+- :key: '5'
+  :contents: "## How it works"
+  :translated_contents: "## 仕組み"
+  :original_contents: "## How it works "
+- :key: '6'
+  :contents: 'Upon starting, HARP Manager uses edb_tran_1 to start Postgres if it
+    isn''t already running. After this, it periodically checks the server as defined
+    by the edb_tran_2 setting. HARP Manager collects various bits of data about Postgres
+    including:'
+  :translated_contents: 起動時に、 HARP Managerは`pg_ctl`を使用してPostgresをまだ実行していない場合は起動します。この後、
+    `node.lease_refresh_interval`設定で定義されたサーバーを定期的にチェックします。 HARP Managerは、次を含むPostgresに関するさまざまなデータを収集します。
+  :original_contents: 'Upon starting, HARP Manager uses `pg_ctl` to start Postgres
+    if it isn''t already running. After this, it periodically checks the server as
+    defined by the `node.lease_refresh_interval` setting. HARP Manager collects various
+    bits of data about Postgres including: '
+- :key: '7'
+  :contents: "*  The node's current LSN. "
+  :translated_contents: "*ノードの現在のLSN。"
+  :original_contents: "* The node's current LSN. "
+- :key: '8'
+  :contents: "*  If Postgres is running and accepting connections. This particular
+    data point is considered a lease that must be periodically renewed. If it expires,
+    HARP Proxy removes the node from any existing routing. "
+  :translated_contents: "* Postgresが実行されており、接続を受け入れている場合。この特定のデータポイントは、定期的に更新する必要があるリースと見なされます。有効期限が切れると、
+    HARPプロキシは既存のルーティングからノードを削除します。 "
+  :original_contents: "* If Postgres is running and accepting connections. This particular
+    data point is considered a lease that must be periodically renewed. If it expires,
+    HARP Proxy removes the node from any existing routing. "
+- :key: '9'
+  :contents: "*  The current apply LSN position for all upstream BDR peer nodes. "
+  :translated_contents: "*すべてのアップストリームBDRピアノードの現在の適用LSN位置。 "
+  :original_contents: "* The current apply LSN position for all upstream BDR peer
+    nodes. "
+- :key: '10'
+  :contents: "*  If CAMO is enabled: - Name of the CAMO partner - Peer CAMO state
+    (edb_tran_3) - CAMO queue received and applied LSN positions "
+  :translated_contents: "* CAMOが有効になっている場合： - CAMOパートナーの名前 - ピアCAMOの状態（`is_ready`）
+    - CAMOキューが受信して適用したLSN位置"
+  :original_contents: "* If CAMO is enabled: - Name of the CAMO partner - Peer CAMO
+    state (`is_ready`) - CAMO queue received and applied LSN positions "
+- :key: '11'
+  :contents: "*  Node type, such as whether the node is BDR or regular Postgres. "
+  :translated_contents: "*ノードがBDRか通常のPostgresかなどのノードタイプ。 "
+  :original_contents: "* Node type, such as whether the node is BDR or regular Postgres. "
+- :key: '12'
+  :contents: "*  The node's current role, such as a read/write, physical streaming
+    replica,  logical standby, and so on. "
+  :translated_contents: "* ノードの現在のロール（読み取り/書き込み、物理ストリーミングレプリカ、ロジカルスタンバイなど）。"
+  :original_contents: "* The node's current role, such as a read/write, physical streaming
+    replica,  logical standby, and so on. "
+- :key: '13'
+  :contents: "*  BDR node state, which is edb_tran_1 except in limited cases. "
+  :translated_contents: "* BDRノードの状態。限定された場合を除き`ACTIVE`。 "
+  :original_contents: "* BDR node state, which is `ACTIVE` except in limited cases. "
+- :key: '14'
+  :contents: "*  BDR Node ID for other metadata gathering. "
+  :translated_contents: "* その他のメタデータ収集のBDRノード ID。 "
+  :original_contents: "* BDR Node ID for other metadata gathering. "
+- :key: '15'
+  :contents: "*  Other tracking values. "
+  :translated_contents: "※その他のトラッキング値です。"
+  :original_contents: "* Other tracking values. "
+- :key: '16'
+  :contents: edb_excla_notran_2 When naming BDR nodes in HARP, the BDR node name must
+    match the node name represented in the edb_tran_1 configuration attribute. This
+    occurs in the bootstrap process.
+  :translated_contents: edb_excla_notran_2 HARPでBDRノードに名前を付ける場合、 BDRノード名は `node.name`構成属性で表されるノード名と一致する必要があります。これはブートストラッププロセスで発生します。
+  :original_contents: 'edb_excla_notran_2 When naming BDR nodes in HARP, the BDR node
+    name must match the node name represented in the `node.name` configuration attribute.
+    This occurs in the bootstrap process. '
+- :key: '17'
+  :contents: The data collected here is fully available to other HARP Manager processes
+    and is used to evaluate lag, partner readiness, and other criteria that direct
+    switchover and failover behavior.
+  :translated_contents: ここで収集されたデータは、他のHARP Managerプロセスで完全に利用でき、遅延、パートナーの準備状況、およびスイッチオーバーとフェイルオーバーの動作を指示するその他の基準を評価するために使用されます。
+  :original_contents: 'The data collected here is fully available to other HARP Manager
+    processes and is used to evaluate lag, partner readiness, and other criteria that
+    direct switchover and failover behavior. '
+- :key: '18'
+  :contents: After updating the node metadata, HARP Manager either refreshes the lead  master
+    lease if it's already held by the local node or seeks to obtain the  lease if
+    it's expired. Since the current state of all nodes is known to all other nodes,
+    the node that was the previous lead master is given automatic priority ranking
+    if present. If not, all other nodes list themselves by LSN lag, node priority,
+    and other criteria, and the most qualified node seizes the lead master lease.
+  :translated_contents: ノードのメタデータを更新した後、 HARPマネージャーは、リードマスターリースがローカルノードによって既に保持されている場合は更新するか、リースが期限切れになっている場合はリースを取得しようとします。すべてのノードの現在の状態は他のすべてのノードに知られているため、以前のリードマスターであったノードが存在する場合は、自動的に優先順位が付けられます。そうでない場合、他のすべてのノードはLSNラグ、ノードの優先度、およびその他の基準で自分自身をリストし、最も適格なノードがリードマスターリースを押収します。
+  :original_contents: 'After updating the node metadata, HARP Manager either refreshes
+    the lead  master lease if it''s already held by the local node or seeks to obtain
+    the  lease if it''s expired. Since the current state of all nodes is known to
+    all other nodes, the node that was the previous lead master is given automatic
+    priority ranking if present. If not, all other nodes list themselves by LSN lag,
+    node priority, and other criteria, and the most qualified node seizes the lead
+    master lease. '
+- :key: '19'
+  :contents: This procedure happens for every defined location where nodes are present.
+    Thus  for locations DC1 and DC2, there is a lead master node in each, with a  separate
+    lease and election process for both.
+  :translated_contents: この手順は、ノードが存在する定義されたすべての場所で発生します。したがって、ロケーションDC1とDC2には、それぞれにリードマスターノードがあり、両方に個別のリースと選択のプロセスがあります。
+  :original_contents: 'This procedure happens for every defined location where nodes
+    are present. Thus  for locations DC1 and DC2, there is a lead master node in each,
+    with a  separate lease and election process for both. '
+- :key: '20'
+  :contents: HARP Manager repeats these Postgres status checks, lease renewals, and  elections
+    repeatedly to ensure the cluster always has a lead master target for  connections
+    from HARP Proxy.
+  :translated_contents: HARP Managerは、これらのPostgresステータスチェック、リース更新、および選択を繰り返して、クラスターがHARPプロキシからの接続に対して常にリードマスターターゲットを持つようにします。
+  :original_contents: 'HARP Manager repeats these Postgres status checks, lease renewals,
+    and  elections repeatedly to ensure the cluster always has a lead master target
+    for  connections from HARP Proxy.  '
+- :key: '21'
+  :contents: "## Configuration"
+  :translated_contents: "## 構成"
+  :original_contents: "## Configuration "
+- :key: '22'
+  :contents: 'HARP Manager expects the edb_tran_1, edb_tran_2, and edb_tran_3 configuration
+    stanzas.  The following is a functional example:'
+  :translated_contents: HARPマネージャーは、 `dcs`、`cluster`、および`manager`構成スタンザを想定しています。以下は機能的な例です。
+  :original_contents: 'HARP Manager expects the `dcs`, `cluster`, and `manager` configuration
+    stanzas.  The following is a functional example: '
+- :key: '23'
+  :contents: edb_notranlate_0
+  :translated_contents: edb_notranlate_0
+  :original_contents: " edb_notranlate_0  "
+- :key: '24'
+  :contents: 'You can apply changes to the configuration file (default: edb_tran_1)
+    by issuing edb_tran_2 to the running instance or by calling a service-level reload.'
+  :translated_contents: 実行中のインスタンスに`SIGHUP`を発行するか、サービスレベルのリロードを呼び出すことにより、構成ファイル（デフォルト：`/etc/harp/config.yml`）に変更を適用できます。
+  :original_contents: 'You can apply changes to the configuration file (default: `/etc/harp/config.yml`)
+    by issuing `SIGHUP` to the running instance or by calling a service-level reload. '
+- :key: '25'
+  :contents: See edb_lk_asis_1  for further details.
+  :translated_contents: 詳細については、edb_lk_asis_1を参照してください。
+  :original_contents: 'See edb_lk_asis_1  for further details. '
+- :key: '26'
+  :contents: "## Usage"
+  :translated_contents: "## 使用法"
+  :original_contents: "## Usage "
+- :key: '27'
+  :contents: 'This is the basic usage for HARP Manager:'
+  :translated_contents: これは、 HARP Managerの基本的な使用法です。
+  :original_contents: 'This is the basic usage for HARP Manager: '
+- :key: '28'
+  :contents: edb_notranlate_1
+  :translated_contents: edb_notranlate_1
+  :original_contents: " edb_notranlate_1  "
+- :key: '29'
+  :contents: There are no arguments to launch edb_tran_1 as a forked daemon.  This
+    software is designed to be launched through systemd or in a container  as a top-level
+    process. This also means output is directed to STDOUT and STDERR for capture and
+    access through journald or an attached container terminal.
+  :translated_contents: "`harp-manager`をフォークされたデーモンとして起動するための引数はありません。このソフトウェアは、systemdまたはコンテナ内でトップレベルプロセスとして起動されるように設計されています。これは、journaldまたは接続されたコンテナターミナルを介したキャプチャとアクセスのために、出力がSTDOUTおよびSTDERRに送られることも意味します。"
+  :original_contents: 'There are no arguments to launch `harp-manager` as a forked
+    daemon.  This software is designed to be launched through systemd or in a container  as
+    a top-level process. This also means output is directed to STDOUT and STDERR for
+    capture and access through journald or an attached container terminal. '
+- :key: '30'
+  :contents: "## Disabling and reenabling HARP Manager control of Postgres"
+  :translated_contents: "## PostgresのHARP Manager制御の無効化と再有効化"
+  :original_contents: "## Disabling and reenabling HARP Manager control of Postgres "
+- :key: '31'
+  :contents: You can temporarily pause HARP Manager control of Postgres. This  results
+    in a state where the daemon continues running but doesn't perform any  operations
+    that can affect existing behavior of the cluster. Reenabling  management causes
+    it to resume operation.
+  :translated_contents: PostgresのHARP Manager制御を一時的に一時停止できます。これにより、デーモンの実行は継続されますが、クラスターの既存の動作に影響を与える可能性のある操作は実行されません。管理を再度有効にすると、操作が再開されます。
+  :original_contents: 'You can temporarily pause HARP Manager control of Postgres.
+    This  results in a state where the daemon continues running but doesn''t perform
+    any  operations that can affect existing behavior of the cluster. Reenabling  management
+    causes it to resume operation. '
+- :key: '32'
+  :contents: 'An example of temporarily disabling node management is:'
+  :translated_contents: ノード管理を一時的に無効にする例は次のとおりです。
+  :original_contents: 'An example of temporarily disabling node management is: '
+- :key: '33'
+  :contents: edb_notranlate_2
+  :translated_contents: edb_notranlate_2
+  :original_contents: " edb_notranlate_2  "
+- :key: '34'
+  :contents: See edb_lk_asis_2  for more details.
+  :translated_contents: 詳細については、edb_lk_asis_2を参照してください。
+  :original_contents: 'See edb_lk_asis_2  for more details. '
+- :key: '35'
+  :contents: Node management by HARP Manager is enabled by default.
+  :translated_contents: HARP Managerによるノード管理はデフォルトで有効になっています。
+  :original_contents: 'Node management by HARP Manager is enabled by default. '

@@ -1,0 +1,10 @@
+---
+- :id: '1'
+  :table_hash: &1
+  - Type: "----"
+    Description: "------------"
+  - Type: Enhancement
+    Description: HARPプロキシは読み取り専用のユーザー専用TLS証明書をサポート（RT78516）
+  - Type: Bug Fix
+    Description: HARPプロキシは、50秒後に終了する代わりにDCSへの接続を試行し続けます。 (RT75406)
+  :translated_text: *1

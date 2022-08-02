@@ -1,0 +1,26 @@
+---
+- :id: '1'
+  :table_hash: &1
+  - Type: "----"
+    Description: "------------"
+  - Type: Feature
+    Description: BDR DCSは、ポーリングノードではなく、コンセンサスからのプッシュ通知を使用するようになりました。 <p>この変更により、新しいリーダーの選択にかかる時間が短縮され、
+      HARPがBDR DCSで行う負荷が削減されます。これは、短い間隔でポーリングする必要がなくなったためです。</p>
+  - Type: Feature
+    Description: TPAは各HARPプロキシを1つずつ再起動し、戻ってくるまで待機して、ソフトウェアのアップグレード中にアプリケーションで発生したダウンタイムを削減します。
+  - Type: Feature
+    Description: PGBouncerをHARPプロキシに直接埋め込むサポートは非推奨になり、 HARPの次のメジャーリリースで削除されます。 <p>PGBouncerをHARPプロキシと同じノードに配置し、そのHARPプロキシをポイントするようにTPAを構成できるようになりました。
+      </p>
+  - Type: Bug Fix
+    Description: "`harpctl promote <node_name>`は、指定されたノードとは異なるノードを昇格させることがありました。これは修正されました。
+      (RT75406)"
+  - Type: Bug Fix
+    Description: 分散コンセンサスサービスとしてBDRを使用すると、フェンシングが失敗することがありました。これは修正されました。
+  - Type: Bug Fix
+    Description: "`harpctl apply`は、クラスターが確立された後にリーダーのルーティングをオフにしなくなりました。 (RT80790)"
+  - Type: Bug Fix
+    Description: 障害が発生したデータベースを起動できない場合に、Harp-managerが終了しなくなりました。 Harp-managerは、ランダムに増加する期間で再試行し続けます。
+      (RT78516)
+  - Type: Bug Fix
+    Description: 内部pgbouncerプロキシ実装でメモリリークが発生しました。これは修正されました。
+  :translated_text: *1

@@ -1,0 +1,10 @@
+---
+- :id: '1'
+  :table_hash:
+  - Software: "-----------"
+    Min version: "---------"
+  - Software: etcd
+    Min version: '3.4'
+  - Software: PgBouncer
+    Min version: '1.14'
+  :translated_text: ''
