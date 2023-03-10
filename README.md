@@ -77,3 +77,5 @@ ko ----------------------------------------------
    1. This is to converst some words in a sentence that does not require tranlation that wrapped with "`" in the original md file.
       1. example: `postgreSQL` -> "no_tran_1" and back to `posrgresql` after translation process
       1. You can ignore this program when analysing the issue.
+
+
