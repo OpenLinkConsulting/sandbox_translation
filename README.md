@@ -28,47 +28,51 @@ Data directory : test
 Japanese translation setting
 
 ```
-ja -------------------------------------------
-   target_lang = 'ja'
-   project_id = "open-lc-g-signin"
-   source_language = "en"
-   location_id = "us-central1"
-   model_id = "TRL5657739390860918784"
-   glossary_id =  "edb_glossary_v7"
-ja -----------------------------------------------
-```
+# ## ja -------------------------------------------
+target_lang = "ja"
+project_id = "open-lc-g-signin"
+source_language = "en"
+location_id = "us-central1"
+model_id = "NMc190444e7e1da849"
+glossary_id = "edb_glossary_ja_v7"
+# # -----------------------------------------------
 
-Traditional Chinese
+## ja -　w/o model------------------------------------------
+# target_lang = "ja"
+# project_id = "open-lc-g-signin"
+# source_language = "en"
+# location_id = "us-central1"
+# model_id = ""
+# glossary_id = "edb_glossary_ja_v7"
+# -----------------------------------------------
 
-```
-zh-TW -------------------------------------------
-   target_lang = 'zh-TW'
-   project_id = "open-lc-g-signin"
-   source_language = "en"
-   location_id = "us-central1"
-   model_id = ""
-   glossary_id =  "edb_glossary_tw_v4"
-zh-TW ----------------------------------------------
-```
 
-Koeran Language Setting
+## zh-TW -----------------------------------------
+# target_lang = "zh-TW"
+# project_id = "open-lc-g-signin"
+# source_language = "en"
+# location_id = "us-central1"
+# model_id = "NM9271e762e814d6a5"
+# # model_id = "TRL8950902060375605248"
+# glossary_id = "edb_glossary_tw_v4"
+##   ----------------------------------------------
 
-```
-ko -------------------------------------------
-   target_lang = 'ko'
-   project_id = "open-lc-g-signin"
-   source_language = "en"
-   location_id = "us-central1"
-   model_id = ""
-   glossary_id =  "edb_glossary_ko_v1"
-ko ----------------------------------------------
+## ko ---------------------------------------------
+# target_lang = "ko"
+# project_id = "open-lc-g-signin"
+# source_language = "en"
+# location_id = "us-central1"
+# model_id = ""
+# glossary_id = "edb_glossary_ko_v1"
+# -------------------------------------------------
 ```
 
 ### Program desctription of each
 
-1. proc_5a_table_translation_step3_translation_api_20210124.rb
+1. No need to run program proc_5a  hence commented out.
+<!-- 1. proc_5a_table_translation_step3_translation_api_20210124.rb
    1. Translate the contents in the table section.
-      1. Reason for having this:  Some columen does not require translation. Rather need to describe as is in English
+      1. Reason for having this:  Some columen does not require translation. Rather need to describe as is in English -->
 2. proc_5b_step3_translation_api_20210124.rb
    1. Translation of main contents in yaml format
 3. file_order_20190919.rb

@@ -36,15 +36,15 @@ glossary_config = { glossary: glossary_path }
 mime_type = "text/plain"
 parent = client.location_path project: project_id, location: location_id
 
-file_order ("#{@file_dir_hash['working_sub_translation_before_transl_contents_directory']}/*.yaml")
+file_order ("#{@file_dir_hash['test_in_sample_1_dir']}/*.yaml")
 s=""
 
 
 @file_name.each do |item|
 
-    file_out=File.open("#{@file_dir_hash['translated_sub_yml_directory']}/" + item +".yaml","w+")
+    file_out=File.open("#{@file_dir_hash['test_out_sample_1_dir']}/" + item +".yaml","w+")
 
-    yaml = YAML.load_file("#{@file_dir_hash['working_sub_translation_before_transl_contents_directory']}/" + item +".yaml", aliases: true)
+    yaml = YAML.load_file("#{@file_dir_hash['test_in_sample_1_dir']}/" + item +".yaml", aliases: true)
 
 
     yaml.each{|k|
@@ -53,7 +53,7 @@ s=""
 
         puts "----------------------------k[:contents]--------------------------"
         puts k[:contents]
-  
+
         convert_to_number k[:contents].to_s
         puts "----------------------------k[:contents]--------------------------"
         contents << @translation_output_english

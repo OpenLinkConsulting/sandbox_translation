@@ -1,0 +1,206 @@
+---
+- :key: '1'
+  :contents: edb_tran_1
+  :translated_contents: "`# Introduction`"
+  :original_contents: "`# Introduction` "
+- :key: '2'
+  :contents: 'In a perfect world, there would be no need for a backup. However, it
+    is important, especially in business environments, to be prepared for when the
+    "unexpected" happens. In a database scenario, the unexpected could take any of
+    the following forms:'
+  :translated_contents: 完璧な世界では、バックアップは必要ありません。ただし、特にビジネス環境では、「予想外」が発生した場合に備えることが重要です。データベースシナリオでは、予期せぬものは次のいずれかの形式を取る可能性があります。
+  :original_contents: 'In a perfect world, there would be no need for a backup. However,
+    it is important, especially in business environments, to be prepared for when
+    the "unexpected" happens. In a database scenario, the unexpected could take any
+    of the following forms: '
+- :key: '3'
+  :contents: "-  data corruption "
+  :translated_contents: "- データの破損"
+  :original_contents: "- data corruption "
+- :key: '4'
+  :contents: "-  system failure (including hardware failure) "
+  :translated_contents: "- システム障害ハードウェア障害を含む"
+  :original_contents: "- system failure (including hardware failure) "
+- :key: '5'
+  :contents: "-  human error "
+  :translated_contents: "- 人的エラー"
+  :original_contents: "- human error "
+- :key: '6'
+  :contents: "-  natural disaster "
+  :translated_contents: "- 自然災害"
+  :original_contents: "- natural disaster "
+- :key: '7'
+  :contents: In such cases, any ICT manager or DBA should be able to fix the incident
+    and recover the database in the shortest time possible. We normally refer to this
+    discipline as **disaster recovery**, and more broadly *business continuity*.
+  :translated_contents: このような場合、ICTマネージャーまたはDBAは、可能な限り最短の時間でインシデントを修正し、データベースを復旧できる必要があります。私たちは通常、この分野を**ディザスターリカバリー**、より広範には*ビジネス継続性*と呼んでいます。
+  :original_contents: 'In such cases, any ICT manager or DBA should be able to fix
+    the incident and recover the database in the shortest time possible. We normally
+    refer to this discipline as **disaster recovery**, and more broadly *business
+    continuity*. '
+- :key: '8'
+  :contents: 'Within business continuity, it is important to familiarise yourself
+    with two fundamental metrics, as defined by Wikipedia:'
+  :translated_contents: ビジネス継続性の範囲では、Wikipediaで定義されている2つの基本的なメトリックをよく理解することが重要です。
+  :original_contents: 'Within business continuity, it is important to familiarise
+    yourself with two fundamental metrics, as defined by Wikipedia: '
+- :key: '9'
+  :contents: '-   edb_lk_asis_1 : "maximum targeted period in which data might be
+    lost from an IT service due to a major incident" '
+  :translated_contents: '- edb_lk_asis_1 "重大なインシデントによりITサービスからデータが失われる可能性のある最大対象期間"'
+  :original_contents: '-  edb_lk_asis_1 : "maximum targeted period in which data might
+    be lost from an IT service due to a major incident" '
+- :key: '10'
+  :contents: '-   edb_lk_asis_2 : "the targeted duration of time and a service level
+    within which a business process must be restored after a disaster (or disruption)
+    in order to avoid unacceptable consequences associated with a break in business
+    continuity" '
+  :translated_contents: "- edb_lk_asis_2 「事業継続の中断に関連する受け入れがたい結果を回避するために、災害または中断後にビジネスプロセスを復元する必要がある目標期間とサービスレベル」"
+  :original_contents: '-  edb_lk_asis_2 : "the targeted duration of time and a service
+    level within which a business process must be restored after a disaster (or disruption)
+    in order to avoid unacceptable consequences associated with a break in business
+    continuity" '
+- :key: '11'
+  :contents: In a few words, RPO represents the maximum amount of data you can afford
+    to lose, while RTO represents the maximum down-time you can afford for your service.
+  :translated_contents: 一言で言えば、RPOは損失してもよいデータの最大量を表し、RTOはサービスに許容できる最大ダウンタイムを表します。
+  :original_contents: 'In a few words, RPO represents the maximum amount of data you
+    can afford to lose, while RTO represents the maximum down-time you can afford
+    for your service. '
+- :key: '12'
+  :contents: Understandably, we all want **RPO=0** (*"zero data loss"*) and **RTO=0**
+    (*zero down-time*, utopia) - even if it is our grandmothers's recipe website.
+    In reality, a careful cost analysis phase allows you to determine your business
+    continuity requirements.
+  :translated_contents: 当然のことながら、私たち全員が**RPO=0**「ゼロデータ損失」*と**RTO=0***ゼロダウンタイム*、理想郷を望んでいます。たとえそれが祖母のレシピウェブサイトであったとしても。実際には、注意深いコスト分析フェーズにより、ビジネス継続性の要件を決定できます。
+  :original_contents: 'Understandably, we all want **RPO=0** (*"zero data loss"*)
+    and **RTO=0** (*zero down-time*, utopia) - even if it is our grandmothers''s recipe
+    website. In reality, a careful cost analysis phase allows you to determine your
+    business continuity requirements. '
+- :key: '13'
+  :contents: Fortunately, with an open source stack composed of **Barman** and **PostgreSQL**,
+    you can achieve RPO=0 thanks to synchronous streaming replication. RTO is more
+    the focus of a *High Availability* solution, like  edb_lk_asis_3 . Therefore,
+    by integrating Barman and repmgr, you can dramatically reduce RTO to nearly zero.
+  :translated_contents: 幸いなことに、 ** Barman**と**PostgreSQL**で構成されるオープンソーススタックを使用すると、同期ストリーミングレプリケーションのおかげでRPO=0を達成できます。
+    RTOは、 edb_lk_asis_3のような*高可用性*ソリューションの焦点です。したがって、 Barmanとrepmgrを統合することにより、RTOをほぼゼロに劇的に削減できます。
+  :original_contents: 'Fortunately, with an open source stack composed of **Barman**
+    and **PostgreSQL**, you can achieve RPO=0 thanks to synchronous streaming replication.
+    RTO is more the focus of a *High Availability* solution, like  edb_lk_asis_3 .
+    Therefore, by integrating Barman and repmgr, you can dramatically reduce RTO to
+    nearly zero. '
+- :key: '14'
+  :contents: Based on our experience at EnterpriseDB, we can confirm that PostgreSQL
+    open source clusters with Barman and repmgr can easily achieve more than 99.99%
+    uptime over a year, if properly configured and monitored.
+  :translated_contents: EnterpriseDBでの経験に基づいて、 Barmanおよびrepmgrを使用したPostgreSQLオープンソースクラスターは、適切に構成および監視されている場合、1年間で99.99%を超えるアップタイムを簡単に達成できることが確認できます。
+  :original_contents: 'Based on our experience at EnterpriseDB, we can confirm that
+    PostgreSQL open source clusters with Barman and repmgr can easily achieve more
+    than 99.99% uptime over a year, if properly configured and monitored. '
+- :key: '15'
+  :contents: In any case, it is important for us to emphasise more on cultural aspects
+    related to disaster recovery, rather than the actual tools. Tools without human
+    beings are useless.
+  :translated_contents: いずれにせよ、実際のツールではなく、ディザスターリカバリーに関連する文化的な側面をより強調することが重要です。人間のいない道具は役に立ちません。
+  :original_contents: 'In any case, it is important for us to emphasise more on cultural
+    aspects related to disaster recovery, rather than the actual tools. Tools without
+    human beings are useless. '
+- :key: '16'
+  :contents: 'Our mission with Barman is to promote a culture of disaster recovery
+    that:'
+  :translated_contents: Barmanとの私たちの使命は、次のようなディザスターリカバリーの文化を促進することです。
+  :original_contents: 'Our mission with Barman is to promote a culture of disaster
+    recovery that: '
+- :key: '17'
+  :contents: "-  focuses on backup procedures "
+  :translated_contents: "- バックアップ手順に焦点を当てます"
+  :original_contents: "- focuses on backup procedures "
+- :key: '18'
+  :contents: "-  focuses even more on recovery procedures "
+  :translated_contents: "- 復旧手順にさらに焦点を当てます"
+  :original_contents: "- focuses even more on recovery procedures "
+- :key: '19'
+  :contents: "-  relies on education and training on strong theoretical and practical
+    concepts of PostgreSQL's crash recovery, backup, Point-In-Time-Recovery, and replication
+    for your team members "
+  :translated_contents: "- チームメンバーのためのPostgreSQLのクラッシュリカバリー、バックアップ、ポイントインタイムリカバリー、およびレプリケーションの強力な理論的および実践的な概念に関する教育とトレーニングに依存しています。"
+  :original_contents: "- relies on education and training on strong theoretical and
+    practical concepts of PostgreSQL's crash recovery, backup, Point-In-Time-Recovery,
+    and replication for your team members "
+- :key: '20'
+  :contents: "-  promotes testing your backups (only a backup that is tested can be
+    considered to be valid), either manually or automatically (be creative with Barman's
+    hook scripts!) "
+  :translated_contents: "- 手動または自動で、バックアップのテストを促進しますテストされたバックアップのみが有効であると考えられます。Barmanのフックスクリプトを創造してください。"
+  :original_contents: "- promotes testing your backups (only a backup that is tested
+    can be considered to be valid), either manually or automatically (be creative
+    with Barman's hook scripts!) "
+- :key: '21'
+  :contents: "-  fosters regular practice of recovery procedures, by all members of
+    your devops team (yes, developers too, not just system administrators and DBAs) "
+  :translated_contents: "- Devopsチームのすべてのメンバーによる、リカバリ手順の定期的な練習を促進しますはい、システム管理者とDBAだけでなく開発者もです"
+  :original_contents: "- fosters regular practice of recovery procedures, by all members
+    of your devops team (yes, developers too, not just system administrators and DBAs) "
+- :key: '22'
+  :contents: "-  solicits to regularly scheduled drills and disaster recovery simulations
+    with the team every 3-6 months "
+  :translated_contents: "- 3〜6か月ごとにチームとの定期的にスケジュールされた訓練とディザスターリカバリーシミュレーションを呼びかけます。"
+  :original_contents: "- solicits to regularly scheduled drills and disaster recovery
+    simulations with the team every 3-6 months "
+- :key: '23'
+  :contents: "-  relies on continuous monitoring of PostgreSQL and Barman, and that
+    is able to promptly identify any anomalies "
+  :translated_contents: "- PostgreSQLとBarmanの継続的なモニタリングに依存し、異常を迅速に特定できます "
+  :original_contents: "- relies on continuous monitoring of PostgreSQL and Barman,
+    and that is able to promptly identify any anomalies "
+- :key: '24'
+  :contents: 'Moreover, do everything you can to prepare yourself and your team for
+    when the disaster happens (yes, *when*), because when it happens:'
+  :translated_contents: さらに、災害が発生した場合に自分自身とあなたのチームを準備するためにできる限りのことを行ってくださいはい、*とき*、なぜなら、それが起こったとき
+  :original_contents: 'Moreover, do everything you can to prepare yourself and your
+    team for when the disaster happens (yes, *when*), because when it happens: '
+- :key: '25'
+  :contents: "-  It is going to be a Friday evening, most likely right when you are
+    about to leave the office. "
+  :translated_contents: "- それは金曜日の夕方になり、おそらくあなたがオフィスを出ようとしているときです。"
+  :original_contents: "- It is going to be a Friday evening, most likely right when
+    you are about to leave the office. "
+- :key: '26'
+  :contents: "-  It is going to be when you are on holiday (right in the middle of
+    your cruise around the world) and somebody else has to deal with it. "
+  :translated_contents: "-それは、あなたが休暇中で世界一周クルーズの真っ最中で、他の誰かがそれに対処しなければならないときです。"
+  :original_contents: "- It is going to be when you are on holiday (right in the middle
+    of your cruise around the world) and somebody else has to deal with it. "
+- :key: '27'
+  :contents: "-  It is certainly going to be stressful. "
+  :translated_contents: "- それは確かにストレスになるでしょう。"
+  :original_contents: "- It is certainly going to be stressful. "
+- :key: '28'
+  :contents: "-  You will regret not being sure that the last available backup is
+    valid. "
+  :translated_contents: "- 最後に利用可能なバックアップが有効であることを確認しないと後悔するでしょう。"
+  :original_contents: "- You will regret not being sure that the last available backup
+    is valid. "
+- :key: '29'
+  :contents: "-  Unless you know how long it approximately takes to recover, every
+    second will seem like forever. "
+  :translated_contents: "- 回復するまでにおよそどれくらいの時間がかかるかを知らなければ、一秒一秒が永遠のように見えるでしょう。"
+  :original_contents: "- Unless you know how long it approximately takes to recover,
+    every second will seem like forever. "
+- :key: '30'
+  :contents: Be prepared, don't be scared.
+  :translated_contents: 準備をしてください、怖がらないでください。
+  :original_contents: 'Be prepared, don''t be scared. '
+- :key: '31'
+  :contents: In 2011, with these goals in mind, 2ndQuadrant started the development
+    of Barman, now one of the most used backup tools for PostgreSQL. Barman is an
+    acronym for "Backup and Recovery Manager".
+  :translated_contents: 2011年、これらの目標を念頭に置いて、2ndQuadrantは現在PostgreSQLで最も使用されているバックアップツールの1つであるBarmanの開発を開始しました。
+    Barmanは、「Backup and Recovery Manager」の頭字語です。
+  :original_contents: 'In 2011, with these goals in mind, 2ndQuadrant started the
+    development of Barman, now one of the most used backup tools for PostgreSQL. Barman
+    is an acronym for "Backup and Recovery Manager". '
+- :key: '32'
+  :contents: Currently, Barman works only on Linux and Unix operating systems.
+  :translated_contents: 現在、 BarmanはLinuxおよびUnixオペレーティングシステムでのみ動作します。
+  :original_contents: 'Currently, Barman works only on Linux and Unix operating systems. '

@@ -1,16 +1,16 @@
 ---
 
-target_language: ja
-project_id: open-lc-g-signin
-source_language: en
-location_id: us-central1
-model_id: TRL4209878290149670912
-glossary_id: edb_glossary_ja_v7
-project_name: High Availability Routing for Postgres -HARP
-version_name: 2.1.1
-author_name: EnterpriseDB Corporation
-release_name: 2.1.1
-copyright_name: EDB
+target_language: "ja"
+project_id: "open-lc-g-signin"
+source_language: "en"
+location_id: "us-central1"
+model_id: "NMc190444e7e1da849"
+glossary_id: "edb_glossary_ja_v7"
+project_name: "High Availability Routing for Postgres -HARP"
+version_name: "2.1.1"
+author_name: "EnterpriseDB Corporation"
+release_name: "2.1.1"
+copyright_name: "EDB"
 
 
 test_in_sample_1_dir: test/in/sample_1
